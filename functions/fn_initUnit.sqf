@@ -43,14 +43,12 @@ if (_oldEH >= 0) then {
 // This is the core of the mod, where damage is intercepted and modified.
 private _ehID = _unit addEventHandler ["HandleDamage", {
     params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitIndex", "_instigator", "_hitPoint"];
-
     // Re-fetch debug setting within the event handler scope to ensure it's current.
     // Still using the global retrieval method without a unit object for this global setting.
     private _debugEH = ["AAA_VAR_DEBUG", _cbaSettingsCategory] call CBA_settings_fnc_get;
     if (isNil "_debugEH" || {typeName _debugEH != "BOOL"}) then {
         _debugEH = false; // Default to false if setting is not properly retrieved
     };
-
     if (_debugEH) then {
         diag_log format ["AAA DEBUG: HandleDamage called for %1. Initial params: %2", _unit, _this];
     };
@@ -61,7 +59,6 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
     private _modEnabled     = ["AAA_VAR_MOD_ENABLED",     _cbaSettingsCategory] call CBA_settings_fnc_get;
     private _playersEnabled = ["AAA_VAR_PLAYERS_ENABLED", _cbaSettingsCategory] call CBA_settings_fnc_get;
     private _forceBase      = ["AAA_VAR_FORCE_BASE_ARMOR", _cbaSettingsCategory] call CBA_settings_fnc_get;
-
     // Robustly default settings if not found or invalid type.
     if (isNil "_modEnabled"     || {typeName _modEnabled     != "BOOL"}) then { _modEnabled     = true; };
     if (isNil "_playersEnabled" || {typeName _playersEnabled != "BOOL"}) then { _playersEnabled = true; };
@@ -80,7 +77,6 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
     private _hp = toLower _hitPoint;
     // Define a list of valid hitpoints that the mod should process.
     private _validHPs = ["hitface","hithead","hitpelvis","hitabdomen","hitdiaphragm","hitchest","hitbody","hitleftarm","hitrightarm","hithands","hitlegs"];
-
     // If the hitpoint is not one we're configured to handle, exit.
     if !(_hp in _validHPs) exitWith {
         if (_debugEH) then { diag_log format ["AAA DEBUG: Hitpoint '%1' not in valid list. Exiting.", _hp]; };
@@ -88,8 +84,8 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
     };
 
     // Check if scaling is enabled for this specific hitpoint.
-    // These are hitpoint-specific settings, so pass the unit object.
-    private _hpEnabled = [_unit, "AAA_VAR_" + (toUpper _hp) + "_ENABLED", _cbaSettingsCategory] call CBA_settings_fnc_get;
+    // **Corrected:** These are global settings, so do NOT pass the unit object.
+    private _hpEnabled = ["AAA_VAR_" + (toUpper _hp) + "_ENABLED", _cbaSettingsCategory] call CBA_settings_fnc_get;
     if (isNil "_hpEnabled" || {typeName _hpEnabled != "BOOL"}) then { _hpEnabled = true; }; // Default to true if not found/invalid
     if (!_hpEnabled) exitWith {
         if (_debugEH) then { diag_log format ["AAA DEBUG: Scaling disabled for hitpoint '%1'. Exiting.", _hp]; };
@@ -113,10 +109,9 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
     private _baseArmor  = ["AAA_VAR_BASE_ARMOR_VALUE", _cbaSettingsCategory] call CBA_settings_fnc_get;
     private _minArmor   = ["AAA_VAR_MIN_ARMOR_VALUE",  _cbaSettingsCategory] call CBA_settings_fnc_get;
     private _exponent   = ["AAA_VAR_PEN_EXPONENT",     _cbaSettingsCategory] call CBA_settings_fnc_get;
-
     // Robustly default settings if not found or invalid type.
     if (isNil "_baseArmor" || {typeName _baseArmor != "SCALAR"}) then { _baseArmor = 10; }; // Default base armor
-    if (isNil "_minArmor"  || {typeName _minArmor  != "SCALAR"}) then { _minArmor  = 2;  }; // Default min ACE armor for scaling
+    if (isNil "_minArmor"  || {typeName _minArmor  != "SCALAR"}) then { _minArmor  = 2; }; // Default min ACE armor for scaling
     if (isNil "_exponent"  || {typeName _exponent  != "SCALAR"}) then { _exponent  = 0.25; }; // Default caliber exponent
 
     // --- Retrieve Raw ACE Armor Value ---
@@ -126,7 +121,6 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
     if (typeName _aceRawArmor == "ARRAY") then { _aceRawArmor = _aceRawArmor param [0, 0]; };
     // Ensure raw armor is not negative.
     _aceRawArmor = _aceRawArmor max 0;
-
     // --- Compute Effective Armor (ACE + Base) ---
     // This is the total armor value used in the damage calculation.
     // If 'Force Base Armor Override' is enabled, only _baseArmor is used.
@@ -137,18 +131,15 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
     } else {
         (_aceRawArmor + _baseArmor) max 0.001
     });
-
     // --- Determine Combined Armor Coefficient ---
     // This coefficient combines side, player/AI, and hitpoint specific multipliers.
     private _isPlayer = isPlayer _unit;
     private _side     = if (_isPlayer) then { playerSide } else { side _unit };
-
     // These are global settings, so retrieve without a unit object.
     private _sideCoef = ["AAA_VAR_" + (toUpper str _side) + "_ARMOR_COEF", _cbaSettingsCategory] call CBA_settings_fnc_get;
     private _playerCoef = ["AAA_VAR_" + (if (_isPlayer) then {"PLAYER"} else {"AI"}) + "_ARMOR_COEF", _cbaSettingsCategory] call CBA_settings_fnc_get;
-    // This is a hitpoint-specific setting, so pass the unit object.
-    private _hitpointCoef = [_unit, "AAA_VAR_" + (toUpper _hp) + "_COEF", _cbaSettingsCategory] call CBA_settings_fnc_get;
-
+    // **Corrected:** This is a global setting, so do NOT pass the unit object.
+    private _hitpointCoef = ["AAA_VAR_" + (toUpper _hp) + "_COEF", _cbaSettingsCategory] call CBA_settings_fnc_get;
     // Default coefficients if not found or invalid type.
     if (isNil "_sideCoef"   || {typeName _sideCoef   != "SCALAR"}) then { _sideCoef   = 1; };
     if (isNil "_playerCoef" || {typeName _playerCoef != "SCALAR"}) then { _playerCoef = 1; };
@@ -176,7 +167,6 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
     // The '+ 1' in the denominator ensures that damage is always attenuated (never amplified)
     // and provides a smoother scaling curve, preventing extreme damage reduction at low armor values.
     private _damageMultiplier = 1 / ((_combinedCoef * _effectiveArmor) + 1);
-
     // --- Compute New Damage ---
     // Apply the calculated damage multiplier to the added damage.
     // The total damage to the hitpoint is the previous damage plus the attenuated new damage.
@@ -193,7 +183,6 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
         } else {
             "CHANGE: N/A"
         };
-
         private _msg = format [
             "AAA DEBUG: NEW HIT!\n" +
             "UNIT: %1\nHITPOINT: %2\nPROJECTILE: %3\n" +
@@ -215,7 +204,6 @@ private _ehID = _unit addEventHandler ["HandleDamage", {
             _addedDamage, (_addedDamage * _damageMultiplier),
             _newDamage
         ];
-
         diag_log _msg; // Log detailed info to RPT file
         if (hasInterface && (_isPlayer || {local _unit})) then {
             // Show hint only for player or locally controlled units with interface
