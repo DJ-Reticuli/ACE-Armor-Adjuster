@@ -1,0 +1,6 @@
+//<'AAA.pbo' properties via Mikero's dos tools, dll version 9.98>
+prefix=AAA;
+Mikero=DePbo.dll.8.35;
+version=23092601;
+//PboType=Arma Addon;
+//</properties>
