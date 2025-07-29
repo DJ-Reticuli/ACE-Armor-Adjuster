@@ -1,119 +1,837 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project name="ACE Armor Adjuster">
-    <Package name="AAA">
-        <!-- Core Toggles -->
-        <Key ID="STR_AAA_MOD_ENABLED">
-            <English>Enable AAA Armor Scaling</English>
-        </Key>
-        <Key ID="STR_AAA_MOD_ENABLED_Desc">
-            <English>Enable or disable the armor scaling system</English>
-        </Key>
-        <Key ID="STR_AAA_DEBUG">
-            <English>Enable Debug Logging</English>
-        </Key>
-        <Key ID="STR_AAA_DEBUG_Desc">
-            <English>Show debug info for damage calculations</English>
-        </Key>
-        <Key ID="STR_AAA_PLAYERS_ENABLED">
-            <English>Apply Scaling to Player Units</English>
-        </Key>
-        <Key ID="STR_AAA_PLAYERS_ENABLED_Desc">
-            <English>Apply armor scaling to players (uncheck for AI only)</English>
-        </Key>
-        <Key ID="STR_AAA_FORCE_BASE_ARMOR">
-            <English>Force Base Armor Override</English>
-        </Key>
-        <Key ID="STR_AAA_FORCE_BASE_ARMOR_Desc">
-            <English>Override ACE armor with base armor for enabled hitpoints</English>
-        </Key>
-
-        <!-- Core Sliders -->
-        <Key ID="STR_AAA_BASE_ARMOR">
-            <English>Base Armor Value</English>
-        </Key>
-        <Key ID="STR_AAA_BASE_ARMOR_Desc">
-            <English>Armor value to add or override for enabled hitpoints</English>
-        </Key>
-        <Key ID="STR_AAA_MIN_ARMOR">
-            <English>Minimum ACE Armor for Scaling</English>
-        </Key>
-        <Key ID="STR_AAA_MIN_ARMOR_Desc">
-            <English>Minimum ACE armor to apply side/player coefficients</English>
-        </Key>
-        <Key ID="STR_AAA_PEN_EXPONENT">
-            <English>Caliber Exponent</English>
-        </Key>
-        <Key ID="STR_AAA_PEN_EXPONENT_Desc">
-            <English>Exponent for projectile caliber penetration</English>
-        </Key>
-
-        <!-- Side Modifiers -->
-        <Key ID="STR_AAA_BLUFOR_ARMOR_COEF">
-            <English>BLUFOR Armor Coefficient</English>
-        </Key>
-        <Key ID="STR_AAA_BLUFOR_ARMOR_COEF_Desc">
-            <English>Armor multiplier for BLUFOR units</English>
-        </Key>
-        <Key ID="STR_AAA_OPFOR_ARMOR_COEF">
-            <English>OPFOR Armor Coefficient</English>
-        </Key>
-        <Key ID="STR_AAA_OPFOR_ARMOR_COEF_Desc">
-            <English>Armor multiplier for OPFOR units</English>
-        </Key>
-        <Key ID="STR_AAA_INDEP_ARMOR_COEF">
-            <English>INDEP Armor Coefficient</English>
-        </Key>
-        <Key ID="STR_AAA_INDEP_ARMOR_COEF_Desc">
-            <English>Armor multiplier for INDEP units</English>
-        </Key>
-
-        <!-- Group Modifiers -->
-        <Key ID="STR_AAA_PLAYER_ARMOR_COEF">
-            <English>Player Armor Coefficient</English>
-        </Key>
-        <Key ID="STR_AAA_PLAYER_ARMOR_COEF_Desc">
-            <English>Armor multiplier for player units</English>
-        </Key>
-        <Key ID="STR_AAA_AI_ARMOR_COEF">
-            <English>AI Armor Coefficient</English>
-        </Key>
-        <Key ID="STR_AAA_AI_ARMOR_COEF_Desc">
-            <English>Armor multiplier for AI units</English>
-        </Key>
-
-        <!-- Hitpoint Toggles -->
-        <Key ID="STR_AAA_HitFace_ENABLED">
-            <English>Enable Scaling for Face</English>
-        </Key>
-        <Key ID="STR_AAA_HitHead_ENABLED">
-            <English>Enable Scaling for Head</English>
-        </Key>
-        <Key ID="STR_AAA_HitPelvis_ENABLED">
-            <English>Enable Scaling for Pelvis</English>
-        </Key>
-        <Key ID="STR_AAA_HitAbdomen_ENABLED">
-            <English>Enable Scaling for Abdomen</English>
-        </Key>
-        <Key ID="STR_AAA_HitDiaphragm_ENABLED">
-            <English>Enable Scaling for Diaphragm</English>
-        </Key>
-        <Key ID="STR_AAA_HitChest_ENABLED">
-            <English>Enable Scaling for Chest</English>
-        </Key>
-        <Key ID="STR_AAA_HitBody_ENABLED">
-            <English>Enable Scaling for Body</English>
-        </Key>
-        <Key ID="STR_AAA_HitLeftArm_ENABLED">
-            <English>Enable Scaling for Left Arm</English>
-        </Key>
-        <Key ID="STR_AAA_HitRightArm_ENABLED">
-            <English>Enable Scaling for Right Arm</English>
-        </Key>
-        <Key ID="STR_AAA_HitHands_ENABLED">
-            <English>Enable Scaling for Hands</English>
-        </Key>
-        <Key ID="STR_AAA_HitLegs_ENABLED">
-            <English>Enable Scaling for Legs</English>
-        </Key>
-    </Package>
+<Project name="AAA">
+  <Package name="ACE_Armor_Adjuster">
+    <Key ID="STR_AAA_Name">
+      <English>ACE Armor Adjuster</English>
+      <Spanish>Ajustador de armadura ACE</Spanish>
+      <German>ACE-Panzerungseinsteller</German>
+      <Chinesesimp>ACE装甲调节器</Chinesesimp>
+      <Japanese>ACEアーマーアジャスター</Japanese>
+      <Italian>Regolatore di armatura ACE</Italian>
+      <French>Ajusteur d'armure ACE</French>
+      <Polish>ACE Armor Adjuster</Polish>
+      <Russian>Настройщик брони ACE</Russian>
+      <Portuguese>Ajustador de armadura ACE</Portuguese>
+      <Czech>ACE Armor Adjuster</Czech>
+    </Key>
+    <Key ID="STR_AAA_Toggles">
+      <English>[1] Toggles</English>
+      <Spanish>[1] Interruptores</Spanish>
+      <German>[1] Schaltet  um.</German>
+      <Chinesesimp>[1] 开关</Chinesesimp>
+      <Japanese>[1] トグル</Japanese>
+      <Italian>[1] Alette</Italian>
+      <French>[1] Toggles</French>
+      <Polish>[1] Przełączniki</Polish>
+      <Russian>[1] Переключатели</Russian>
+      <Portuguese>[1] Toggles</Portuguese>
+      <Czech>[1] Přepínače</Czech>
+    </Key>
+    <Key ID="STR_AAA_ModEnabled">
+      <English>Mod Enabled</English>
+      <Spanish>Mod Habilitado</Spanish>
+      <German>Mod Aktiviert</German>
+      <Chinesesimp>已启用的模式</Chinesesimp>
+      <Japanese>Mod Enabled</Japanese>
+      <Italian>Mod Abilitato</Italian>
+      <French>Mod Enabled</French>
+      <Polish>Mod Włączony</Polish>
+      <Russian>Мод включен</Russian>
+      <Portuguese>Modificado</Portuguese>
+      <Czech>Mod Povoleno</Czech>
+    </Key>
+    <Key ID="STR_AAA_ModEnabled_Desc">
+      <English>Whether the mod is enabled and overriding default ACE damage or not.</English>
+      <Spanish>Si el mod está activado y anula el daño por defecto de ACE o no.</Spanish>
+      <German>Ob der Mod aktiviert ist und den Standard-ACE-Schaden außer Kraft setzt oder nicht.</German>
+      <Chinesesimp>是否启用MOD并覆盖默认的ACE伤害。</Chinesesimp>
+      <Japanese>MODが有効で、デフォルトのACEダメージを上書きしているかどうか。</Japanese>
+      <Italian>Se la mod è abilitata e sovrascrive i danni ACE predefiniti o meno.</Italian>
+      <French>Si le mod est activé et remplace les dommages par défaut de l'ACE ou non.</French>
+      <Polish>Czy mod jest włączony i nadpisuje domyślne obrażenia ACE czy nie.</Polish>
+      <Russian>Включен ли мод и переопределяет ли он стандартный урон ACE или нет.</Russian>
+      <Portuguese>Se o mod está ou não activado e se o dano ACE por omissão está ou não activado.</Portuguese>
+      <Czech>Zda je mod povolen a přepisuje výchozí poškození ACE, nebo ne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_ArmorCoefs">
+      <English>[2] Armor Coefficients</English>
+      <Spanish>[2] Coeficientes de blindaje</Spanish>
+      <German>[2] Rüstungskoeffizienten</German>
+      <Chinesesimp>[2] 装甲系数</Chinesesimp>
+      <Japanese>[2] アーマー係数</Japanese>
+      <Italian>[2] Coefficienti di armatura</Italian>
+      <French>[2] Coefficients d'armure</French>
+      <Polish>[2] Współczynniki pancerza</Polish>
+      <Russian>[2] Коэффициенты брони</Russian>
+      <Portuguese>[2] Coeficientes de Blindagem</Portuguese>
+      <Czech>[2] Koeficienty pancíře</Czech>
+    </Key>
+    <Key ID="STR_AAA_PlayerArmorCoef">
+      <English>Player Armor Coefficient</English>
+      <Spanish>Coeficiente de blindaje del jugador</Spanish>
+      <German>Spieler-Rüstungskoeffizient</German>
+      <Chinesesimp>玩家装甲系数</Chinesesimp>
+      <Japanese>プレイヤーアーマー係数</Japanese>
+      <Italian>Coefficiente di armatura del giocatore</Italian>
+      <French>Coefficient d'armure du joueur</French>
+      <Polish>Współczynnik pancerza gracza</Polish>
+      <Russian>Коэффициент брони игрока</Russian>
+      <Portuguese>Coeficiente de Armadura do Jogador</Portuguese>
+      <Czech>Koeficient brnění hráče</Czech>
+    </Key>
+    <Key ID="STR_AAA_PlayerArmorCoef_Desc">
+      <English>Adjusts how well ACE armor blocks damage for players. A lower value means less effective armor, whereas a higher value provides more effective armor.</English>
+      <Spanish>Ajusta la eficacia de la armadura ACE para bloquear el daño de los jugadores. Un valor más bajo significa una armadura menos efectiva, mientras que un valor más alto proporciona una armadura más efectiva.</Spanish>
+      <German>Passt an, wie gut ACE-Rüstung Schaden für Spieler abblockt. Ein niedriger Wert bedeutet eine weniger effektive Rüstung, während ein höherer Wert eine effektivere Rüstung bietet.</German>
+      <Chinesesimp>调整ACE护甲为玩家阻挡伤害的程度。一个较低的值意味着较少的有效护甲，而一个较高的值则提供更有效的护甲。</Chinesesimp>
+      <Japanese>ACEアーマーがプレイヤーに与えるダメージをどの程度ブロックするかを調整します。値が低いほどアーマーの効果は低く、値が高いほどアーマーの効果は高くなります。</Japanese>
+      <Italian>Regola l'efficacia dell'armatura ACE nel bloccare i danni dei giocatori. Un valore più basso significa un'armatura meno efficace, mentre un valore più alto fornisce un'armatura più efficace.</Italian>
+      <French>Règle la façon dont l'armure ACE bloque les dégâts pour les joueurs. Une valeur plus faible signifie une armure moins efficace, tandis qu'une valeur plus élevée fournit une armure plus efficace.</French>
+      <Polish>Reguluje, jak dobrze pancerz ACE blokuje obrażenia graczy. Niższa wartość oznacza mniej efektywny pancerz, natomiast wyższa wartość zapewnia bardziej efektywny pancerz.</Polish>
+      <Russian>Регулирует, насколько хорошо броня ACE блокирует урон для игроков. Меньшее значение означает меньшую эффективность брони, в то время как большее значение обеспечивает большую эффективность брони.</Russian>
+      <Portuguese>Ajusta o quão bem a armadura ACE bloqueia os danos para os jogadores. Um valor mais baixo significa uma armadura menos eficaz, enquanto que um valor mais alto proporciona uma armadura mais eficaz.</Portuguese>
+      <Czech>Upravuje, jak dobře brnění ACE blokuje poškození hráčů. Nižší hodnota znamená méně účinné brnění, zatímco vyšší hodnota poskytuje účinnější brnění.</Czech>
+    </Key>
+    <Key ID="STR_AAA_AIArmorCoef">
+      <English>AI Armor Coefficient</English>
+      <Spanish>Coeficiente de blindaje de la IA</Spanish>
+      <German>AI-Rüstungskoeffizient</German>
+      <Chinesesimp>AI装甲系数</Chinesesimp>
+      <Japanese>AIアーマー係数</Japanese>
+      <Italian>Coefficiente di armatura AI</Italian>
+      <French>Coefficient d'armure AI</French>
+      <Polish>Współczynnik pancerza AI</Polish>
+      <Russian>Коэффициент брони ИИ</Russian>
+      <Portuguese>Coeficiente de Armadura AI</Portuguese>
+      <Czech>Koeficient pancéřování AI</Czech>
+    </Key>
+    <Key ID="STR_AAA_AIArmorCoef_Desc">
+      <English>Adjusts how well ACE armor blocks damage for AI. A lower value means less effective armor, whereas a higher value provides more effective armor.</English>
+      <Spanish>Ajusta la eficacia de la armadura ACE para bloquear el daño de la IA. Un valor más bajo significa una armadura menos efectiva, mientras que un valor más alto proporciona una armadura más efectiva.</Spanish>
+      <German>Passt an, wie gut die ACE-Rüstung Schaden für die KI abblockt. Ein niedriger Wert bedeutet weniger effektive Panzerung, während ein höherer Wert mehr effektive Panzerung bietet.</German>
+      <Chinesesimp>调整ACE装甲对AI伤害的阻挡程度。一个较低的值意味着较低的有效护甲，而一个较高的值则提供更有效的护甲。</Chinesesimp>
+      <Japanese>エースのアーマーがAIによるダメージをどの程度ブロックするかを調整します。値が低いほど効果的なアーマーが少なくなり、値が高いほど効果的なアーマーが多くなります。</Japanese>
+      <Italian>Regola l'efficacia dell'armatura ACE nel bloccare i danni dell'IA. Un valore più basso significa un'armatura meno efficace, mentre un valore più alto fornisce un'armatura più efficace.</Italian>
+      <French>Règle la façon dont l'armure ACE bloque les dégâts pour l'IA. Une valeur inférieure signifie une armure moins efficace, tandis qu'une valeur supérieure fournit une armure plus efficace.</French>
+      <Polish>Reguluje, jak dobrze pancerz ACE blokuje obrażenia dla AI. Niższa wartość oznacza mniej efektywny pancerz, natomiast wyższa wartość zapewnia bardziej efektywny pancerz.</Polish>
+      <Russian>Регулирует, насколько хорошо броня АСЕ блокирует урон для ИИ. Меньшее значение означает менее эффективную броню, в то время как большее значение обеспечивает более эффективную броню.</Russian>
+      <Portuguese>Ajusta o quão bem a armadura ACE bloqueia os danos para a IA. Um valor mais baixo significa uma armadura menos eficaz, enquanto que um valor mais alto proporciona uma armadura mais eficaz.</Portuguese>
+      <Czech>Upravuje, jak dobře brnění ACE blokuje poškození pro umělou inteligenci. Nižší hodnota znamená méně účinný pancíř, zatímco vyšší hodnota poskytuje účinnější pancíř.</Czech>
+    </Key>
+    <Key ID="STR_AAA_BluforArmorCoef">
+      <English>BLUFOR Armor Coefficient</English>
+      <Spanish>Coeficiente de blindaje BLUFOR</Spanish>
+      <German>BLUFOR Rüstungskoeffizient</German>
+      <Chinesesimp>BLUFOR装甲系数</Chinesesimp>
+      <Japanese>BLUFORアーマー係数</Japanese>
+      <Italian>Coefficiente di armatura BLUFOR</Italian>
+      <French>Coefficient d'armure BLUFOR</French>
+      <Polish>Współczynnik pancerza BLUFOR</Polish>
+      <Russian>Коэффициент брони BLUFOR</Russian>
+      <Portuguese>Coeficiente de Armadura BLUFOR</Portuguese>
+      <Czech>Koeficient pancéřování BLUFOR</Czech>
+    </Key>
+    <Key ID="STR_AAA_BluforArmorCoef_Desc">
+      <English>Adjusts how well ACE armor blocks damage for BLUFOR. A lower value means less effective armor, whereas a higher value provides more effective armor. Set to 0 to disable, will override AI/player coefficients.</English>
+      <Spanish>Ajusta la eficacia de la armadura ACE para bloquear el daño de BLUFOR. Un valor más bajo significa una armadura menos efectiva, mientras que un valor más alto proporciona una armadura más efectiva. Poner a 0 para desactivar, anulará los coeficientes de la IA/del jugador.</Spanish>
+      <German>Stellt ein, wie gut die ACE-Rüstung Schaden für BLUFOR abblockt. Ein niedriger Wert bedeutet eine weniger effektive Panzerung, während ein höherer Wert eine effektivere Panzerung bietet. Wird der Wert auf 0 gesetzt, werden die KI/Spieler-Koeffizienten außer Kraft gesetzt.</German>
+      <Chinesesimp>调整ACE装甲为BLUFOR阻挡伤害的程度。较低的值意味着较低的有效护甲，而较高的值则提供更有效的护甲。设置为0表示禁用，将覆盖AI/玩家的系数。</Chinesesimp>
+      <Japanese>BLUFORのACEアーマーのダメージブロック効果を調整します。値が低いほど効果的なアーマーが少なくなり、値が高いほど効果的なアーマーになります。0に設定すると無効となり、AI/プレイヤー係数が上書きされます。</Japanese>
+      <Italian>Regola la capacità dell'armatura ACE di bloccare i danni per BLUFOR. Un valore più basso significa un'armatura meno efficace, mentre un valore più alto fornisce un'armatura più efficace. Se si imposta su 0 per disattivare, i coefficienti IA/giocatore verranno sovrascritti.</Italian>
+      <French>Règle la façon dont l'armure ACE bloque les dégâts pour BLUFOR. Une valeur plus faible signifie une armure moins efficace, tandis qu'une valeur plus élevée fournit une armure plus efficace. Réglez à 0 pour désactiver, cela annulera les coefficients AI/joueur.</French>
+      <Polish>Reguluje skuteczność blokowania obrażeń przez pancerz ACE dla BLUFOR. Niższa wartość oznacza mniej efektywny pancerz, podczas gdy wyższa wartość zapewnia bardziej efektywny pancerz. Ustaw na 0, aby wyłączyć, zastąpi współczynniki AI/gracza.</Polish>
+      <Russian>Регулирует, насколько хорошо броня ACE блокирует урон для BLUFOR. Меньшее значение означает меньшую эффективность брони, в то время как большее значение обеспечивает большую эффективность брони. Установите значение 0, чтобы отключить, оно будет отменять коэффициенты ИИ/игрока.</Russian>
+      <Portuguese>Ajusta a forma como a armadura ACE bloqueia os danos para a BLUFOR. Um valor mais baixo significa uma armadura menos eficaz, enquanto que um valor mais alto proporciona uma armadura mais eficaz. Definido a 0 para desactivar, irá sobrepor-se aos coeficientes AI/jogador.</Portuguese>
+      <Czech>Upravuje, jak dobře brnění ACE blokuje poškození pro BLUFOR. Nižší hodnota znamená méně účinný pancíř, zatímco vyšší hodnota poskytuje účinnější pancíř. Nastavením na 0 se vypne, přepíše koeficienty AI/hráčů.</Czech>
+    </Key>
+    <Key ID="STR_AAA_OpforArmorCoef">
+      <English>OPFOR Armor Coefficient</English>
+      <Spanish>Coeficiente de blindaje OPFOR</Spanish>
+      <German>OPFOR-Rüstungskoeffizient</German>
+      <Chinesesimp>OPFOR装甲系数</Chinesesimp>
+      <Japanese>OPFORアーマー係数</Japanese>
+      <Italian>Coefficiente di armatura OPFOR</Italian>
+      <French>Coefficient de blindage de l'OPFOR</French>
+      <Polish>Współczynnik pancerza OPFOR</Polish>
+      <Russian>Коэффициент бронирования ОПФОР</Russian>
+      <Portuguese>Coeficiente de Armadura OPFOR</Portuguese>
+      <Czech>Koeficient pancéřování OPFOR</Czech>
+    </Key>
+    <Key ID="STR_AAA_OpforArmorCoef_Desc">
+      <English>Adjusts how well ACE armor blocks damage for OPFOR. A lower value means less effective armor, whereas a higher value provides more effective armor. Set to 0 to disable, will override AI/player coefficients.</English>
+      <Spanish>Ajusta la eficacia del blindaje ACE para bloquear el daño de la OPFOR. Un valor más bajo significa un blindaje menos efectivo, mientras que un valor más alto proporciona un blindaje más efectivo. Poner a 0 para desactivar, anulará los coeficientes de la IA/del jugador.</Spanish>
+      <German>Passt an, wie gut die ACE-Rüstung Schaden für OPFOR abblockt. Ein niedriger Wert bedeutet eine weniger effektive Panzerung, während ein höherer Wert eine effektivere Panzerung bietet. Wird der Wert auf 0 gesetzt, werden die KI/Spieler-Koeffizienten außer Kraft gesetzt.</German>
+      <Chinesesimp>调整ACE装甲为OPFOR阻挡伤害的程度。较低的值意味着较低的有效护甲，而较高的值则提供更有效的护甲。设置为0表示禁用，将覆盖AI/玩家的系数。</Chinesesimp>
+      <Japanese>ACEのアーマーがOPFORのダメージをどの程度ブロックするかを調整します。値が低いほど効果的なアーマーが少なくなり、値が高いほど効果的なアーマーが多くなります。0に設定すると無効となり、AI/プレイヤー係数が上書きされます。</Japanese>
+      <Italian>Regola la capacità dell'armatura ACE di bloccare i danni per l'OPFOR. Un valore più basso significa un'armatura meno efficace, mentre un valore più alto fornisce un'armatura più efficace. Impostare su 0 per disabilitare, sovrascrive i coefficienti di IA/giocatore.</Italian>
+      <French>Règle la façon dont le blindage ACE bloque les dégâts pour l'OPFOR. Une valeur plus faible signifie un blindage moins efficace, tandis qu'une valeur plus élevée fournit un blindage plus efficace. Défini à 0 pour désactiver, il remplacera les coefficients AI/joueur.</French>
+      <Polish>Reguluje, jak dobrze pancerz ACE blokuje obrażenia dla OPFOR. Niższa wartość oznacza mniej efektywny pancerz, podczas gdy wyższa wartość zapewnia bardziej efektywny pancerz. Ustawienie na 0 wyłącza, nadpisuje współczynniki AI/gracza.</Polish>
+      <Russian>Регулирует, насколько хорошо броня ACE блокирует урон для OPFOR. Меньшее значение означает менее эффективную броню, в то время как большее значение обеспечивает более эффективную броню. Установите значение 0, чтобы отключить, оно отменяет коэффициенты ИИ/игрока.</Russian>
+      <Portuguese>Ajusta a forma como a armadura ACE bloqueia os danos para a OPFOR. Um valor mais baixo significa uma armadura menos eficaz, enquanto que um valor mais alto proporciona uma armadura mais eficaz. Definido a 0 para desactivar, irá sobrepor-se aos coeficientes AI/jogador.</Portuguese>
+      <Czech>Upravuje, jak dobře pancíř ACE blokuje poškození pro OPFOR. Nižší hodnota znamená méně účinný pancíř, zatímco vyšší hodnota poskytuje účinnější pancíř. Nastavením na 0 se vypne, přepíše koeficienty AI/hráčů.</Czech>
+    </Key>
+    <Key ID="STR_AAA_CivArmorCoef">
+      <English>CIVILIAN Armor Coefficient</English>
+      <Spanish>Coeficiente de Blindaje CIVIL</Spanish>
+      <German>CIVILIAN Rüstungskoeffizient</German>
+      <Chinesesimp>平民装甲系数</Chinesesimp>
+      <Japanese>シビリアンアーマー係数</Japanese>
+      <Italian>Coefficiente di armatura CIVILE</Italian>
+      <French>CIVILE Coefficient d'armure</French>
+      <Polish>CIVILIAN Armor Coefficient</Polish>
+      <Russian>Коэффициент брони ЦИВИЛИАН</Russian>
+      <Portuguese>Coeficiente de Armadura CIVILIANO</Portuguese>
+      <Czech>CIVILIAN Koeficient pancéřování</Czech>
+    </Key>
+    <Key ID="STR_AAA_CivArmorCoef_Desc">
+      <English>Adjusts how well ACE armor blocks damage for CIVILIANS. A lower value means less effective armor, whereas a higher value provides more effective armor. Set to 0 to disable, will override AI/player coefficients.</English>
+      <Spanish>Ajusta la eficacia de la armadura ACE para bloquear el daño de los CIVILES. Un valor más bajo significa una armadura menos efectiva, mientras que un valor más alto proporciona una armadura más efectiva. Poner a 0 para desactivar, anulará los coeficientes de la IA/del jugador.</Spanish>
+      <German>Regelt, wie gut die ACE-Rüstung Schaden für CIVILIANS abblockt. Ein niedriger Wert bedeutet eine weniger effektive Panzerung, während ein höherer Wert eine effektivere Panzerung bietet. Wird der Wert auf 0 gesetzt, werden die KI/Spieler-Koeffizienten außer Kraft gesetzt.</German>
+      <Chinesesimp>调整ACE装甲对平民的伤害阻挡程度。较低的值意味着较低的有效护甲，而较高的值则提供更有效的护甲。设置为0表示禁用，将覆盖AI/玩家的系数。</Chinesesimp>
+      <Japanese>ACEアーマーがCIVILIANSのダメージをどの程度ブロックするかを調整する。値が低いほど効果的なアーマーが少なくなり、値が高いほど効果的なアーマーが多くなります。0に設定すると無効となり、AI/プレイヤーの係数が上書きされます。</Japanese>
+      <Italian>Regola la capacità dell'armatura ACE di bloccare i danni per i CIVILI. Un valore più basso significa un'armatura meno efficace, mentre un valore più alto fornisce un'armatura più efficace. Impostare su 0 per disabilitare, sovrascrive i coefficienti di IA/giocatore.</Italian>
+      <French>Règle la façon dont l'armure ACE bloque les dégâts pour les CIVILIENS. Une valeur plus faible signifie une armure moins efficace, tandis qu'une valeur plus élevée fournit une armure plus efficace. Réglez à 0 pour désactiver, cela annulera les coefficients AI/joueur.</French>
+      <Polish>Ustawia jak dobrze pancerz ACE blokuje obrażenia dla CYWILISTÓW. Niższa wartość oznacza mniej efektywny pancerz, podczas gdy wyższa wartość zapewnia bardziej efektywny pancerz. Ustaw na 0, aby wyłączyć, zastąpi współczynniki AI/gracza.</Polish>
+      <Russian>Регулирует, насколько хорошо броня ACE блокирует урон для CIVILIANS. Меньшее значение означает меньшую эффективность брони, в то время как большее значение обеспечивает более эффективную броню. Установите значение 0, чтобы отключить, оно отменяет коэффициенты ИИ/игрока.</Russian>
+      <Portuguese>Ajusta o quão bem a armadura ACE bloqueia os danos para os CIVILIANS. Um valor mais baixo significa uma armadura menos eficaz, enquanto que um valor mais alto proporciona uma armadura mais eficaz. Definido a 0 para desactivar, irá sobrepor-se aos coeficientes de IA/jogador.</Portuguese>
+      <Czech>Upravuje, jak dobře brnění ACE blokuje poškození u CIVILISTŮ. Nižší hodnota znamená méně účinný pancíř, zatímco vyšší hodnota poskytuje účinnější pancíř. Nastavením na 0 se vypne, přepíše koeficienty AI/hráčů.</Czech>
+    </Key>
+    <Key ID="STR_AAA_IndArmorCoef">
+      <English>INDEPENDENT/RESISTANCE Armor Coefficient</English>
+      <Spanish>Coeficiente de blindaje INDEPENDIENTE/RESISTENTE</Spanish>
+      <German>UNABHÄNGIG/RESISTENZ Panzerkoeffizient</German>
+      <Chinesesimp>独立/抵抗装甲系数</Chinesesimp>
+      <Japanese>INDEPENDENT/RESISTANCE アーマー係数</Japanese>
+      <Italian>Coefficiente di armatura INDIPENDENTE/RESISTENZA</Italian>
+      <French>INDEPENDANCE/RESISTANCE Coefficient d'armure</French>
+      <Polish>WSPÓŁCZYNNIK ZBROJNY/RESISTANCE Współczynnik zbroi</Polish>
+      <Russian>Коэффициент брони ИНДЕПЕНДЕНТ/РЕЗИСТАНС</Russian>
+      <Portuguese>Coeficiente de Armadura INDEPENDENTE/RESISTÊNCIA</Portuguese>
+      <Czech>Koeficient pancéřování INDEPENDENT/RESISTANCE</Czech>
+    </Key>
+    <Key ID="STR_AAA_IndArmorCoef_Desc">
+      <English>Adjusts how well ACE armor blocks damage for INDEPENDENT/RESISTANCE. A lower value means less effective armor, whereas a higher value provides more effective armor. Set to 0 to disable, will override AI/player coefficients.</English>
+      <Spanish>Ajusta la eficacia con la que la armadura de ACE bloquea el daño para INDEPENDIENTE/RESISTENCIA. Un valor más bajo significa una armadura menos efectiva, mientras que un valor más alto proporciona una armadura más efectiva. Poner a 0 para desactivar, anulará los coeficientes de la IA/del jugador.</Spanish>
+      <German>Stellt ein, wie gut die ACE-Rüstung Schaden für UNABHÄNGIG/WIDERSTAND abblockt. Ein niedriger Wert bedeutet weniger effektive Panzerung, während ein höherer Wert eine effektivere Panzerung bietet. Wird der Wert auf 0 gesetzt, werden die KI/Spieler-Koeffizienten außer Kraft gesetzt.</German>
+      <Chinesesimp>调整ACE装甲对独立/抵抗伤害的阻挡程度。较低的值意味着较低的有效护甲，而较高的值则提供更有效的护甲。设置为0表示禁用，将覆盖AI/玩家的系数。</Chinesesimp>
+      <Japanese>INDEPENDENT/RESISTANCEのACEアーマーのダメージブロック効果を調整する。値が低いほど効果的なアーマーが少なくなり、値が高いほど効果的なアーマーが多くなる。0に設定すると無効となり、AI/プレイヤー係数が上書きされます。</Japanese>
+      <Italian>Regola la capacità dell'armatura ACE di bloccare i danni per INDIPENDENZA/RESISTENZA. Un valore più basso significa un'armatura meno efficace, mentre un valore più alto fornisce un'armatura più efficace. Se si imposta su 0 per disattivare, i coefficienti dell'IA/giocatore verranno sovrascritti.</Italian>
+      <French>Règle la façon dont l'armure ACE bloque les dégâts pour l'INDEPENDANCE/RESISTANCE. Une valeur plus faible signifie une armure moins efficace, tandis qu'une valeur plus élevée fournit une armure plus efficace. Réglez à 0 pour désactiver, cela annulera les coefficients AI/joueur.</French>
+      <Polish>Reguluje, jak dobrze pancerz ACE blokuje obrażenia dla NIEZALEŻNYCH/RESISTANCE. Niższa wartość oznacza mniej efektywny pancerz, podczas gdy wyższa wartość zapewnia bardziej efektywny pancerz. Ustaw na 0, aby wyłączyć, zastąpi współczynniki AI/gracza.</Polish>
+      <Russian>Регулирует, насколько хорошо броня ACE блокирует урон для INDEPENDENT/RESISTANCE. Меньшее значение означает меньшую эффективность брони, в то время как большее значение обеспечивает более эффективную броню. Установите значение 0, чтобы отключить, оно отменяет коэффициенты ИИ/игрока.</Russian>
+      <Portuguese>Ajusta a forma como a armadura ACE bloqueia os danos por INDEPENDENTE/RESISTÊNCIA. Um valor mais baixo significa uma armadura menos eficaz, enquanto que um valor mais alto proporciona uma armadura mais eficaz. Definido a 0 para desactivar, irá sobrepor-se aos coeficientes de IA/jogador.</Portuguese>
+      <Czech>Upravuje, jak dobře brnění ACE blokuje poškození pro INDEPENDENT/RESISTANCE. Nižší hodnota znamená méně účinný pancíř, zatímco vyšší hodnota poskytuje účinnější pancíř. Nastavením na 0 se vypne, přepíše koeficienty AI/hráče.</Czech>
+    </Key>
+    <Key ID="STR_AAA_HitpointMults">
+      <English>[3] Hitpoint Multipliers</English>
+      <Spanish>[3] Multiplicadores de puntos de golpe</Spanish>
+      <German>[3] Multiplikatoren für Trefferpunkte</German>
+      <Chinesesimp>[3] 命中倍率器</Chinesesimp>
+      <Japanese>[3] ヒットポイント倍率</Japanese>
+      <Italian>[3] Moltiplicatori di punti ferita</Italian>
+      <French>[3] Multiplicateurs de points de vie</French>
+      <Polish>[3] Mnożniki punktów trafień</Polish>
+      <Russian>[3] Множители хитпоинтов</Russian>
+      <Portuguese>[3] Multiplicadores de Hitpoint</Portuguese>
+      <Czech>[3] Násobiče zásahových bodů</Czech>
+    </Key>
+    <Key ID="STR_AAA_FaceMult">
+      <English>Face Multiplier</English>
+      <Spanish>Multiplicador de caras</Spanish>
+      <German>Gesicht Multiplikator</German>
+      <Chinesesimp>脸部倍率器</Chinesesimp>
+      <Japanese>フェイスマルチプライヤー</Japanese>
+      <Italian>Moltiplicatore del viso</Italian>
+      <French>Multiplicateur de visage</French>
+      <Polish>Mnożnik twarzy</Polish>
+      <Russian>Множитель лица</Russian>
+      <Portuguese>Multiplicador facial</Portuguese>
+      <Czech>Násobitel obličeje</Czech>
+    </Key>
+    <Key ID="STR_AAA_FaceMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Face" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de blindaje para el punto de impacto "Cara". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Gesicht" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>脸部 "击中点的护甲系数乘以的数值。较高的值意味着这个打击点有更多的装甲，较小的值意味着较少的装甲。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>顔」のヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーが高くなり、値が小さいほどアーマーが低くなります。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto colpito "Faccia". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Visage". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Face". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для точки попадания "Лицо". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem por para o ponto de golpe "Face". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient pancíře pro zásahový bod "Tvář". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_NeckMult">
+      <English>Neck Multiplier</English>
+      <Spanish>Multiplicador de cuello</Spanish>
+      <German>Nacken-Multiplikator</German>
+      <Chinesesimp>颈部倍率器</Chinesesimp>
+      <Japanese>ネックマルチプライヤー</Japanese>
+      <Italian>Moltiplicatore del collo</Italian>
+      <French>Multiplicateur de cou</French>
+      <Polish>Mnożnik szyjny</Polish>
+      <Russian>Мультипликатор шеи</Russian>
+      <Portuguese>Multiplicador de Pescoço</Portuguese>
+      <Czech>Násobič krku</Czech>
+    </Key>
+    <Key ID="STR_AAA_NeckMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Neck" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de blindaje para el punto de impacto "Cuello". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Hals" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>颈部 "打击点的护甲系数乘以的数值。较高的值意味着这个打击点有更多的装甲，较小的值意味着较少的装甲。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>首」のヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーは高くなり、値が小さいほどアーマーは低くなります。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto di impatto "Collo". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Cou". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Neck". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для хитпоинта "Шея". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem pelo do ponto de golpe "Pescoço". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient brnění pro zásahový bod "Krk". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_HeadMult">
+      <English>Head Multiplier</English>
+      <Spanish>Multiplicador de cabezas</Spanish>
+      <German>Kopf-Multiplikator</German>
+      <Chinesesimp>头部倍率器</Chinesesimp>
+      <Japanese>ヘッドマルチプライヤー</Japanese>
+      <Italian>Moltiplicatore di testa</Italian>
+      <French>Multiplicateur de tête</French>
+      <Polish>Mnożnik głowic</Polish>
+      <Russian>Множитель головы</Russian>
+      <Portuguese>Multiplicador de cabeça</Portuguese>
+      <Czech>Násobič hlavy</Czech>
+    </Key>
+    <Key ID="STR_AAA_HeadMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Head" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de armadura para el punto de impacto "Cabeza". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Kopf" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>头部 "打击点的护甲系数乘以的数值。较高的值意味着这个打击点有更多的装甲，较小的值意味着较少的装甲。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>Head」ヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーが高くなり、値が小さいほどアーマーが低くなることを意味します。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto colpito "Testa". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Tête". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Head". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для хитпоинта "Голова". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem por para o ponto de golpe "Cabeça". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient brnění pro zásahový bod "Hlava". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_PelvisMult">
+      <English>Pelvis Multiplier</English>
+      <Spanish>Multiplicador de pelvis</Spanish>
+      <German>Becken-Multiplikator</German>
+      <Chinesesimp>骨盆倍率器</Chinesesimp>
+      <Japanese>ペルビス・マルチプライヤー</Japanese>
+      <Italian>Moltiplicatore del bacino</Italian>
+      <French>Multiplicateur de pelvis</French>
+      <Polish>Multiplikator miednicy</Polish>
+      <Russian>Мультипликатор таза</Russian>
+      <Portuguese>Multiplicador Pelvis</Portuguese>
+      <Czech>Multiplikátor pánve</Czech>
+    </Key>
+    <Key ID="STR_AAA_PelvisMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Pelvis" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de blindaje para el punto de impacto "Pelvis". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Becken" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>骨盆 "打击点的护甲系数乘以的数值。数值越高意味着这个打击点有更多的护甲，数值越小意味着护甲越少。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>Pelvis」ヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーが高くなり、値が小さいほどアーマーが低くなることを意味します。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto colpito "Bacino". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Pelvis". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Pelvis". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для точки попадания "Таз". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem pelo do ponto de golpe "Pelvis". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient pancíře pro zásahový bod "Pánev". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_AbdomenMult">
+      <English>Abdomen Multiplier</English>
+      <Spanish>Multiplicador de abdomen</Spanish>
+      <German>Abdomen Multiplikator</German>
+      <Chinesesimp>腹部倍率器</Chinesesimp>
+      <Japanese>腹部乗算器</Japanese>
+      <Italian>Moltiplicatore dell'addome</Italian>
+      <French>Multiplicateur d'abdomen</French>
+      <Polish>Mnożnik brzuszny</Polish>
+      <Russian>Мультипликатор живота</Russian>
+      <Portuguese>Multiplicador do abdómen</Portuguese>
+      <Czech>Multiplikátor břicha</Czech>
+    </Key>
+    <Key ID="STR_AAA_AbdomenMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Abdomen" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de blindaje para el punto de impacto "Abdomen". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Unterleib" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>腹部 "击中点的护甲系数乘以的数值。较高的值意味着这个打击点有更多的装甲，较小的值意味着较少的装甲。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>Abdomen "ヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーが高くなり、値が小さいほどアーマーが低くなります。0を指定するとこの設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto colpito "Addome". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>Valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Abdomen". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactive ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Abdomen". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для точки попадания "Живот". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem pelo do ponto de golpe "Abdómen". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient pancíře pro zásahový bod "Břicho". Vyšší hodnota znamená, že tento bod zásahu má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_DiaphragmMult">
+      <English>Diaphragm Multiplier</English>
+      <Spanish>Multiplicador de diafragma</Spanish>
+      <German>Diaphragma-Multiplikator</German>
+      <Chinesesimp>膜片倍率器</Chinesesimp>
+      <Japanese>ダイヤフラムマルチプライヤー</Japanese>
+      <Italian>Diaframma Moltiplicatore</Italian>
+      <French>Multiplicateur à diaphragme</French>
+      <Polish>Mnożnik membranowy</Polish>
+      <Russian>Мембранный мультипликатор</Russian>
+      <Portuguese>Multiplicador do diafragma</Portuguese>
+      <Czech>Membránový násobič</Czech>
+    </Key>
+    <Key ID="STR_AAA_DiaphragmMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Diaphragm" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de armadura para el punto de impacto "Diafragma". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Zwerchfell" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>隔膜 "击中点的护甲系数乘以的数值。数值越高意味着这个打击点有更多的护甲，数值越小意味着护甲越少。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>Diaphragm "ヒットポイントのアーマー係数を乗算するための値です。値が高いほどこのヒットポイントのアーマーは高くなり、値が小さいほどアーマーは低くなります。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto ferita "Diaframma". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Diaphragme". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Diaphragm". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для хитпоинта "Диафрагма". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem por para o ponto de golpe "Diafragma". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient pancíře pro zásahový bod "Membrána". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_ChestMult">
+      <English>Chest Multiplier</English>
+      <Spanish>Multiplicador de pecho</Spanish>
+      <German>Brust-Multiplikator</German>
+      <Chinesesimp>胸部倍率器</Chinesesimp>
+      <Japanese>チェストマルチプライヤー</Japanese>
+      <Italian>Moltiplicatore del torace</Italian>
+      <French>Multiplicateur de coffres</French>
+      <Polish>Mnożnik skrzyń</Polish>
+      <Russian>Множитель сундука</Russian>
+      <Portuguese>Multiplicador de tórax</Portuguese>
+      <Czech>Násobitel hrudníku</Czech>
+    </Key>
+    <Key ID="STR_AAA_ChestMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Chest" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de armadura para el punto de impacto "Pecho". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Brust" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>胸部 "打击点的护甲系数乘以的数值。数值越高意味着这个打击点有更多的护甲，数值越小意味着护甲越少。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>Chest」ヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーが高く、値が小さいほどアーマーが低いことを意味します。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto ferita "Petto". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Coffre". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Chest". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для точки попадания "Грудь". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem pelo do ponto de golpe "Peito". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient brnění pro zásahový bod "Truhla". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_BodyMult">
+      <English>Body Multiplier</English>
+      <Spanish>Multiplicador de cuerpos</Spanish>
+      <German>Körper-Multiplikator</German>
+      <Chinesesimp>身体倍率器</Chinesesimp>
+      <Japanese>ボディマルチプライヤー</Japanese>
+      <Italian>Moltiplicatore del corpo</Italian>
+      <French>Multiplicateur de corps</French>
+      <Polish>Body Multiplier</Polish>
+      <Russian>Множитель тела</Russian>
+      <Portuguese>Multiplicador de corpo</Portuguese>
+      <Czech>Multiplikátor těla</Czech>
+    </Key>
+    <Key ID="STR_AAA_BodyMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Body" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de armadura para el punto de impacto "Cuerpo". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Körper" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>身体 "打击点的护甲系数乘以的数值。数值越高意味着这个打击点有更多的护甲，数值越小意味着护甲越少。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>Body」ヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーは高くなり、値が小さいほどアーマーは低くなります。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto colpito "Corpo". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Corps". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Body". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для точки попадания "Тело". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem pelo do ponto de golpe "Corpo". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient brnění pro zásahový bod "Tělo". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_ArmsMult">
+      <English>Arms Multiplier</English>
+      <Spanish>Multiplicador de brazos</Spanish>
+      <German>Waffenmultiplikator</German>
+      <Chinesesimp>手臂倍率器</Chinesesimp>
+      <Japanese>アームズ・マルチプライヤー</Japanese>
+      <Italian>Moltiplicatore di armi</Italian>
+      <French>Multiplicateur d'armes</French>
+      <Polish>Mnożnik broni</Polish>
+      <Russian>Множитель оружия</Russian>
+      <Portuguese>Multiplicador de braços</Portuguese>
+      <Czech>Multiplikátor zbraní</Czech>
+    </Key>
+    <Key ID="STR_AAA_ArmsMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Arms" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de blindaje para el punto de impacto "Armas". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Waffen" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>武器 "命中点的护甲系数乘以的数值。数值越高意味着这个打击点有更多的护甲，数值越小意味着护甲越少。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>Arms」ヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーは高くなり、値が小さいほどアーマーは低くなります。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto ferita "Armi". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Armes". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Arms". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для точки попадания "Оружие". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem pelo do ponto de golpe "Armas". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient pancíře pro zásahový bod "Arms". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_HandsMult">
+      <English>Hands Multiplier</English>
+      <Spanish>Multiplicador de manos</Spanish>
+      <German>Hände Multiplikator</German>
+      <Chinesesimp>手部倍率器</Chinesesimp>
+      <Japanese>ハンズマルチプライヤー</Japanese>
+      <Italian>Moltiplicatore di mani</Italian>
+      <French>Multiplicateur de mains</French>
+      <Polish>Mnożnik rąk</Polish>
+      <Russian>Множитель рук</Russian>
+      <Portuguese>Multiplicador das mãos</Portuguese>
+      <Czech>Multiplikátor rukou</Czech>
+    </Key>
+    <Key ID="STR_AAA_HandsMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Hands" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de armadura para el punto de impacto "Manos". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Hände" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>手 "击中点的护甲系数乘以的数值。较高的值意味着这个打击点有更多的护甲，较小的值意味着较少的护甲。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>手」のヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーが高くなり、値が小さいほどアーマーが低くなります。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto ferita "Mani". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Mains". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Hands". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для хитпоинта "Руки". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem pelo do ponto de golpe "Mãos". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient brnění pro zásahový bod "Ruce". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_LegsMult">
+      <English>Legs Multiplier</English>
+      <Spanish>Multiplicador de piernas</Spanish>
+      <German>Beine Multiplikator</German>
+      <Chinesesimp>腿部倍率器</Chinesesimp>
+      <Japanese>レッグスマルチプライヤー</Japanese>
+      <Italian>Moltiplicatore di gambe</Italian>
+      <French>Multiplicateur de jambes</French>
+      <Polish>Mnożnik nóg</Polish>
+      <Russian>Множитель ног</Russian>
+      <Portuguese>Multiplicador das pernas</Portuguese>
+      <Czech>Násobitel nohou</Czech>
+    </Key>
+    <Key ID="STR_AAA_LegsMult_Desc">
+      <English>The value to multiply the armor coefficient by for the "Legs" hitpoint. A higher value means this hitpoint has more armor, a smaller value means less armor. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de blindaje para el punto de impacto "Piernas". Un valor más alto significa que este punto de impacto tiene más armadura, un valor más pequeño significa menos armadura. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Rüstungskoeffizient für den Trefferpunkt "Beine" multipliziert wird. Ein höherer Wert bedeutet, dass dieser Trefferpunkt mehr Panzerung hat, ein kleinerer Wert bedeutet weniger Panzerung. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>腿部 "击中点的护甲系数乘以的数值。数值越高意味着这个打击点有更多的护甲，数值越小意味着护甲越少。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>脚」のヒットポイントのアーマー係数を乗じる値です。値が高いほどこのヒットポイントのアーマーは高くなり、値が小さいほどアーマーは低くなります。0を指定すると、この設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per il punto ferita "Gambe". Un valore più alto significa che il punto colpito ha più armatura, un valore più basso significa meno armatura. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour le point d'impact "Jambes". Une valeur plus élevée signifie que ce point d'impact a plus d'armure, une valeur plus petite signifie moins d'armure. Une valeur de 0 désactivera ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla punktu trafienia "Legs". Wyższa wartość oznacza, że ten punkt trafienia ma więcej pancerza, mniejsza wartość oznacza mniej pancerza. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для хитпоинта "Ноги". Большее значение означает, что эта точка имеет больше брони, меньшее - меньше. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem pelo do ponto de golpe "Pernas". Um valor mais alto significa que este ponto de golpe tem mais armadura, um valor mais pequeno significa menos armadura. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient brnění pro zásahový bod "Nohy". Vyšší hodnota znamená, že tento hitpoint má větší pancíř, menší hodnota znamená menší pancíř. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_FaceEnabled">
+      <English>Face Enabled</English>
+      <Spanish>Cara habilitada</Spanish>
+      <German>Gesicht Aktiviert</German>
+      <Chinesesimp>启用了脸部</Chinesesimp>
+      <Japanese>フェイスイネーブル</Japanese>
+      <Italian>Volto abilitato</Italian>
+      <French>Visage activé</French>
+      <Polish>Twarz włączona</Polish>
+      <Russian>Лицо включено</Russian>
+      <Portuguese>Face Enabled</Portuguese>
+      <Czech>Povolení obličeje</Czech>
+    </Key>
+    <Key ID="STR_AAA_NeckEnabled">
+      <English>Neck Enabled</English>
+      <Spanish>Cuello activado</Spanish>
+      <German>Hals Aktiviert</German>
+      <Chinesesimp>颈部已启用</Chinesesimp>
+      <Japanese>ネック有効</Japanese>
+      <Italian>Collo abilitato</Italian>
+      <French>Cou activé</French>
+      <Polish>Szyja włączona</Polish>
+      <Russian>Шея включена</Russian>
+      <Portuguese>Pescoço Activado</Portuguese>
+      <Czech>Povolený krk</Czech>
+    </Key>
+    <Key ID="STR_AAA_HeadEnabled">
+      <English>Head Enabled</English>
+      <Spanish>Cabezal habilitado</Spanish>
+      <German>Kopf Aktiviert</German>
+      <Chinesesimp>头部已启用</Chinesesimp>
+      <Japanese>ヘッドイネーブル</Japanese>
+      <Italian>Testa abilitata</Italian>
+      <French>Tête activée</French>
+      <Polish>Głowica Włączona</Polish>
+      <Russian>Головка Включена</Russian>
+      <Portuguese>Cabeça Capacitada</Portuguese>
+      <Czech>Povolená hlava</Czech>
+    </Key>
+    <Key ID="STR_AAA_PelvisEnabled">
+      <English>Pelvis Enabled</English>
+      <Spanish>Pelvis habilitada</Spanish>
+      <German>Becken Aktiviert</German>
+      <Chinesesimp>启用了骨盆</Chinesesimp>
+      <Japanese>ペルビスイネーブル</Japanese>
+      <Italian>Bacino abilitato</Italian>
+      <French>Pelvis activé</French>
+      <Polish>Miednica włączona</Polish>
+      <Russian>Таз включен</Russian>
+      <Portuguese>Activado pela pélvis</Portuguese>
+      <Czech>Povolená pánev</Czech>
+    </Key>
+    <Key ID="STR_AAA_AbdomenEnabled">
+      <English>Abdomen Enabled</English>
+      <Spanish>Abdomen habilitado</Spanish>
+      <German>Unterleib Aktiviert</German>
+      <Chinesesimp>腹部已启用</Chinesesimp>
+      <Japanese>アブドメン有効</Japanese>
+      <Italian>Addome abilitato</Italian>
+      <French>Abdomen activé</French>
+      <Polish>Brzuch włączony</Polish>
+      <Russian>Брюшная полость включена</Russian>
+      <Portuguese>Abdómen Capacitado</Portuguese>
+      <Czech>Povolené břicho</Czech>
+    </Key>
+    <Key ID="STR_AAA_DiaphragmEnabled">
+      <English>Diaphragm Enabled</English>
+      <Spanish>Diafragma habilitado</Spanish>
+      <German>Diaphragma Aktiviert</German>
+      <Chinesesimp>启用隔膜</Chinesesimp>
+      <Japanese>ダイアフラム有効</Japanese>
+      <Italian>Diaframma abilitato</Italian>
+      <French>Diaphragme activé</French>
+      <Polish>Membrana włączona</Polish>
+      <Russian>Мембрана включена</Russian>
+      <Portuguese>Diafragma Activado</Portuguese>
+      <Czech>Povolená membrána</Czech>
+    </Key>
+    <Key ID="STR_AAA_ChestEnabled">
+      <English>Chest Enabled</English>
+      <Spanish>Pecho habilitado</Spanish>
+      <German>Truhe Aktiviert</German>
+      <Chinesesimp>启用胸腔</Chinesesimp>
+      <Japanese>チェスト有効</Japanese>
+      <Italian>Petto abilitato</Italian>
+      <French>Coffre activé</French>
+      <Polish>Klatka piersiowa włączona</Polish>
+      <Russian>Сундук включен</Russian>
+      <Portuguese>Activado no peito</Portuguese>
+      <Czech>Hrudník povolen</Czech>
+    </Key>
+    <Key ID="STR_AAA_BodyEnabled">
+      <English>Body Enabled</English>
+      <Spanish>Cuerpo habilitado</Spanish>
+      <German>Körper Aktiviert</German>
+      <Chinesesimp>启用躯干</Chinesesimp>
+      <Japanese>本体有効</Japanese>
+      <Italian>Corpo abilitato</Italian>
+      <French>Corps activé</French>
+      <Polish>Korpus włączony</Polish>
+      <Russian>Тело включено</Russian>
+      <Portuguese>Habilitado para o corpo</Portuguese>
+      <Czech>Povolené tělo</Czech>
+    </Key>
+    <Key ID="STR_AAA_ArmsEnabled">
+      <English>Arms Enabled</English>
+      <Spanish>Brazos Activados</Spanish>
+      <German>Arme Aktiviert</German>
+      <Chinesesimp>启用武器</Chinesesimp>
+      <Japanese>Arms Enabled</Japanese>
+      <Italian>Braccia abilitate</Italian>
+      <French>Armes activées</French>
+      <Polish>Uzbrojenie Włączone</Polish>
+      <Russian>Оружие включено</Russian>
+      <Portuguese>Armas Activadas</Portuguese>
+      <Czech>Povolené zbraně</Czech>
+    </Key>
+    <Key ID="STR_AAA_HandsEnabled">
+      <English>Hands Enabled</English>
+      <Spanish>Manos habilitadas</Spanish>
+      <German>Hände Aktiviert</German>
+      <Chinesesimp>启用手</Chinesesimp>
+      <Japanese>ハンズイネーブル</Japanese>
+      <Italian>Mani abilitate</Italian>
+      <French>Mains activées</French>
+      <Polish>Ręce włączone</Polish>
+      <Russian>Руки включены</Russian>
+      <Portuguese>Mãos Capacitadas</Portuguese>
+      <Czech>Povolené ruce</Czech>
+    </Key>
+    <Key ID="STR_AAA_LegsEnabled">
+      <English>Legs Enabled</English>
+      <Spanish>Piernas habilitadas</Spanish>
+      <German>Beine Aktiviert</German>
+      <Chinesesimp>启用腿</Chinesesimp>
+      <Japanese>レッグス有効</Japanese>
+      <Italian>Gambe abilitate</Italian>
+      <French>Jambes activées</French>
+      <Polish>Nogi włączone</Polish>
+      <Russian>Ноги включены</Russian>
+      <Portuguese>Pernas Activadas</Portuguese>
+      <Czech>Povolené nohy</Czech>
+    </Key>
+    <Key ID="STR_AAA_HPEnabled_Desc">
+      <English>Whether the mod should be active for this specific hitpoint or not. Applies everywhere.</English>
+      <Spanish>Si el mod debe estar activo para este punto de impacto específico o no. Se aplica en todas partes.</Spanish>
+      <German>Ob der Mod für diesen bestimmten Hitpoint aktiv sein soll oder nicht. Gilt überall.</German>
+      <Chinesesimp>该模型是否应该对这个特定的打击点起作用。适用于所有地方。</Chinesesimp>
+      <Japanese>この特定のヒットポイントに対してMODを有効にするかどうかを指定します。どこでも適用されます。</Japanese>
+      <Italian>Se la mod deve essere attiva o meno per questo specifico punto di impatto. Si applica ovunque.</Italian>
+      <French>Indique si le mod doit être actif ou non pour ce point d'impact spécifique. S'applique partout.</French>
+      <Polish>Czy mod powinien być aktywny dla tego konkretnego punktu trafienia czy nie. Stosuje się wszędzie.</Polish>
+      <Russian>Должен ли мод быть активным для данной конкретной точки попадания или нет. Применяется везде.</Russian>
+      <Portuguese>Se o mod deve ou não estar activo para este ponto de golpe específico. Aplica-se em todo o lado.</Portuguese>
+      <Czech>Zda má být mod aktivní pro tento konkrétní bod zásahu, nebo ne. Platí všude.</Czech>
+    </Key>
+    <Key ID="STR_AAA_ExplosiveMult">
+      <English>Explosive Multiplier</English>
+      <Spanish>Multiplicador de explosivos</Spanish>
+      <German>Explosiver Multiplikator</German>
+      <Chinesesimp>爆炸力倍增器</Chinesesimp>
+      <Japanese>Explosive Multiplier（エクスプロシブ・マルチプライヤー</Japanese>
+      <Italian>Moltiplicatore esplosivo</Italian>
+      <French>Multiplicateur d'explosifs</French>
+      <Polish>Mnożnik wybuchowy</Polish>
+      <Russian>Взрывной множитель</Russian>
+      <Portuguese>Multiplicador de Explosivos</Portuguese>
+      <Czech>Výbušný násobič</Czech>
+    </Key>
+    <Key ID="STR_AAA_ExplosiveMult_Desc">
+      <English>The value to multiply the armor coefficient by for explosive damage. A higher value means more explosion resistance, a smaller value means less explosion resistance. A value of 0 will disable this setting.</English>
+      <Spanish>El valor por el que se multiplica el coeficiente de blindaje para el daño explosivo. Un valor más alto significa más resistencia a la explosión, un valor más pequeño significa menos resistencia a la explosión. Un valor de 0 desactivará este ajuste.</Spanish>
+      <German>Der Wert, mit dem der Panzerkoeffizient für Explosionsschaden multipliziert wird. Ein höherer Wert bedeutet mehr Explosionswiderstand, ein kleinerer Wert bedeutet weniger Explosionswiderstand. Bei einem Wert von 0 ist diese Einstellung deaktiviert.</German>
+      <Chinesesimp>爆炸伤害时，装甲系数乘以的数值。数值越高意味着抗爆性越强，数值越小意味着抗爆性越弱。值为0将禁用此设置。</Chinesesimp>
+      <Japanese>爆発ダメージ時の装甲係数を乗じる値。値が大きいほど耐爆発性が高く、小さいほど耐爆発性が低くなります。0にするとこの設定は無効になります。</Japanese>
+      <Italian>Il valore per cui moltiplicare il coefficiente di armatura per i danni da esplosione. Un valore più alto significa maggiore resistenza alle esplosioni, un valore più basso significa minore resistenza alle esplosioni. Un valore pari a 0 disattiva questa impostazione.</Italian>
+      <French>La valeur par laquelle il faut multiplier le coefficient d'armure pour les dégâts d'explosion. Une valeur plus élevée signifie une plus grande résistance aux explosions, une valeur plus petite signifie une moindre résistance aux explosions. Une valeur de 0 désactive ce paramètre.</French>
+      <Polish>Wartość, przez którą należy pomnożyć współczynnik pancerza dla obrażeń wybuchowych. Wyższa wartość oznacza większą odporność na eksplozje, mniejsza wartość oznacza mniejszą odporność na eksplozje. Wartość 0 wyłącza to ustawienie.</Polish>
+      <Russian>Значение, на которое нужно умножить коэффициент брони для взрывного урона. Большее значение означает большую взрывоустойчивость, меньшее - меньшую. Значение 0 отключает эту настройку.</Russian>
+      <Portuguese>O valor para multiplicar o coeficiente de blindagem por para danos explosivos. Um valor superior significa mais resistência à explosão, um valor inferior significa menos resistência à explosão. Um valor de 0 irá desactivar esta definição.</Portuguese>
+      <Czech>Hodnota, kterou se násobí koeficient pancíře pro výbušné poškození. Vyšší hodnota znamená větší odolnost proti výbuchu, nižší hodnota znamená menší odolnost proti výbuchu. Hodnota 0 toto nastavení vypne.</Czech>
+    </Key>
+    <Key ID="STR_AAA_THRESHOLD_VALUE">
+      <English>Armor Threshold</English>
+      <Spanish>Umbral de blindaje</Spanish>
+      <German>Schwellenwert für Rüstung</German>
+      <Chinesesimp>护甲阈值</Chinesesimp>
+      <Japanese>アーマースレッショルド</Japanese>
+      <Italian>Soglia di armatura</Italian>
+      <French>Seuil d'armure</French>
+      <Polish>Próg pancerza</Polish>
+      <Russian>Порог брони</Russian>
+      <Portuguese>Limiar de Armadura</Portuguese>
+      <Czech>Práh brnění</Czech>
+    </Key>
+    <Key ID="STR_AAA_THRESHOLD_VALUE_Desc">
+      <English>Threshold setting, this mod will only be enabled if the armor value exceeds this value.</English>
+      <Spanish>Ajuste del umbral, este mod sólo se activará si el valor de la armadura supera este valor.</Spanish>
+      <German>Schwellenwerteinstellung wird dieser Mod nur aktiviert, wenn der Rüstungswert diesen Wert überschreitet.</German>
+      <Chinesesimp>阈值设置，只有当护甲值超过该数值时才会启用此模组</Chinesesimp>
+      <Japanese>Thresholdの設定により、アーマーの値がこの値を超えた場合のみ、このMODが有効になります。</Japanese>
+      <Italian>Impostazione della soglia, questa mod sarà attivata solo se il valore dell'armatura supera questo valore.</Italian>
+      <French>Réglage du seuil, ce mod ne sera activé que si la valeur de l'armure dépasse cette valeur.</French>
+      <Polish>Ustawienie progu, ten mod będzie włączony tylko wtedy, gdy wartość pancerza przekroczy tę wartość.</Polish>
+      <Russian>Настройка порога, этот мод будет включен, только если значение брони превысит это значение.</Russian>
+      <Portuguese>Configuração do limiar, este mod só será activado se o valor da armadura exceder este valor.</Portuguese>
+      <Czech>Nastavení prahové hodnoty, tento mod se aktivuje pouze tehdy, pokud hodnota brnění překročí tuto hodnotu.</Czech>
+    </Key>
+    <Key ID="STR_AAA_DEBUG">
+      <English>Debug</English>
+      <Spanish>Depurar</Spanish>
+      <German>Debuggen</German>
+      <Chinesesimp>调试</Chinesesimp>
+      <Japanese>デバッグ</Japanese>
+      <Italian>Debug</Italian>
+      <French>Déboguer</French>
+      <Polish>Debug</Polish>
+      <Russian>Отладка</Russian>
+      <Portuguese>Debug</Portuguese>
+      <Czech>Ladění</Czech>
+    </Key>
+    <Key ID="STR_AAA_DEBUG_Desc">
+      <English>Enable debug messages.</English>
+      <Spanish>Activar los mensajes de depuración.</Spanish>
+      <German>Aktivieren Sie Debug-Meldungen.</German>
+      <Chinesesimp>启用调试信息</Chinesesimp>
+      <Japanese>デバッグメッセージを有効にする。</Japanese>
+      <Italian>Abilita i messaggi di debug.</Italian>
+      <French>Activez les messages de débogage.</French>
+      <Polish>Włącz komunikaty debugowania.</Polish>
+      <Russian>Включить отладочные сообщения.</Russian>
+      <Portuguese>Habilitar mensagens de debug.</Portuguese>
+      <Czech>Povolení ladicích zpráv.</Czech>
+    </Key>
+    <Key ID="STR_AAA_BASE_ARMOR_VALUE">
+      <English>Base Armor Value</English>
+      <Spanish>Valor de armadura base</Spanish>
+      <German>Basis-Rüstungswert</German>
+      <Chinesesimp>基本装甲值</Chinesesimp>
+      <Japanese>基本アーマー値</Japanese>
+      <Italian>Valore dell'armatura di base</Italian>
+      <French>Valeur de l'armure de base</French>
+      <Polish>Podstawowa wartość pancerza</Polish>
+      <Russian>Базовая стоимость брони</Russian>
+      <Portuguese>Valor da Armadura Base</Portuguese>
+      <Czech>Základní hodnota brnění</Czech>
+    </Key>
+    <Key ID="STR_AAA_BASE_ARMOR_VALUE_Desc">
+      <English>The base armor value to apply to all calculations, regardless of the armor being worn. Will be added with the armor value of the armor being worn unless "Force Base Armor" is enabled.</English>
+      <Spanish>El valor de armadura base que se aplicará a todos los cálculos, independientemente de la armadura que se lleve. Se sumará con el valor de armadura de la armadura que se lleve, a menos que esté activada la opción "Forzar armadura base".</Spanish>
+      <German>Der Basis-Rüstungswert, der für alle Berechnungen gilt, unabhängig von der getragenen Rüstung. Wird mit dem Rüstungswert der getragenen Rüstung addiert, es sei denn, "Force Base Armor" ist aktiviert.</German>
+      <Chinesesimp>适用于所有计算的基本护甲值，无论穿戴何种护甲。除非启用 "强制基本护甲"，否则将与所穿护甲的护甲值相加。</Chinesesimp>
+      <Japanese>着用しているアーマーに関係なく、すべての計算に適用される基本アーマー値。Force Base Armor "が有効でない限り、着用中のアーマーのアーマー値が加算される。</Japanese>
+      <Italian>Il valore dell'armatura di base da applicare a tutti i calcoli, indipendentemente dall'armatura indossata. Verrà aggiunto al valore di armatura dell'armatura indossata, a meno che non si abiliti "Forza armatura base".</Italian>
+      <French>La valeur d'armure de base à appliquer à tous les calculs, quelle que soit l'armure portée. Sera ajoutée à la valeur d'armure de l'armure portée, sauf si l'option "Force Base Armor" est activée.</French>
+      <Polish>Podstawowa wartość pancerza stosowana do wszystkich obliczeń, niezależnie od noszonego pancerza. Zostanie dodana do wartości pancerza noszonej zbroi, chyba że włączona jest opcja "Force Base Armor".</Polish>
+      <Russian>Базовое значение брони, которое будет применяться ко всем расчетам, независимо от надетой брони. Будет добавлено к значению брони носимой брони, если не включен параметр "Force Base Armor".</Russian>
+      <Portuguese>O valor da armadura de base a aplicar a todos os cálculos, independentemente da armadura a ser usada. Será adicionado com o valor da armadura a ser usada, a menos que a "Armadura Base de Força" esteja activada.</Portuguese>
+      <Czech>Základní hodnota zbroje, která se použije pro všechny výpočty bez ohledu na to, jakou zbroj nosíte. Bude se sčítat s hodnotou zbroje nošené zbroje, pokud není povolena funkce "Vynutit základní zbroj".</Czech>
+    </Key>
+    <Key ID="STR_AAA_FORCE_BASE_ARMOR">
+      <English>Force Base Armor</English>
+      <Spanish>Base blindada de la Fuerza</Spanish>
+      <German>Force Base Rüstung</German>
+      <Chinesesimp>部队基地装甲</Chinesesimp>
+      <Japanese>フォースベースアーマー</Japanese>
+      <Italian>Armatura della base militare</Italian>
+      <French>Armure de la base de forces</French>
+      <Polish>Force Base Armor</Polish>
+      <Russian>Броня базы сил</Russian>
+      <Portuguese>Armadura de Base de Força</Portuguese>
+      <Czech>Základna Force Armor</Czech>
+    </Key>
+    <Key ID="STR_AAA_FORCE_BASE_ARMOR_Desc">
+      <English>Will force all units to have the Base Armor Value, regardless of what armor they're actually wearing.</English>
+      <Spanish>Obligará a todas las unidades a tener el Valor de Armadura Base, independientemente de la armadura que lleven en realidad.</Spanish>
+      <German>Erzwingt, dass alle Einheiten den Basis-Rüstungswert haben, unabhängig davon, welche Rüstung sie tatsächlich tragen.</German>
+      <Chinesesimp>将强制所有单位拥有基本装甲值，而不管他们实际穿的是什么装甲。</Chinesesimp>
+      <Japanese>実際にどのような鎧を着ているかに関わらず、すべてのユニットに基本鎧の値を強制的に適用します。</Japanese>
+      <Italian>Costringe tutte le unità ad avere il Valore Armatura Base, indipendentemente dall'armatura che indossano.</Italian>
+      <French>Oblige toutes les unités à avoir la valeur d'armure de base, quelle que soit l'armure qu'elles portent réellement.</French>
+      <Polish>Zmusi wszystkie jednostki do posiadania Base Armor Value, niezależnie od tego, jaką zbroję mają na sobie.</Polish>
+      <Russian>Заставляет всех юнитов иметь базовое значение брони, независимо от того, какая броня на них на самом деле.</Russian>
+      <Portuguese>Forçará todas as unidades a ter o Valor da Armadura de Base, independentemente da armadura que estejam a usar de facto.</Portuguese>
+      <Czech>Vynutí si, aby všechny jednotky měly základní hodnotu zbroje bez ohledu na to, jakou zbroj skutečně nosí.</Czech>
+    </Key>
+    <Key ID="STR_AAA_PlayersEnabled">
+      <English>Enabled for Players</English>
+      <Spanish>Activado para jugadores</Spanish>
+      <German>Aktiviert für Spieler</German>
+      <Chinesesimp>为玩家启用</Chinesesimp>
+      <Japanese>プレイヤーのために有効にする</Japanese>
+      <Italian>Abilitato per i giocatori</Italian>
+      <French>Activé pour les joueurs</French>
+      <Polish>Włączone dla graczy</Polish>
+      <Russian>Включено для игроков</Russian>
+      <Portuguese>Habilitado para Jogadores</Portuguese>
+      <Czech>Povoleno pro hráče</Czech>
+    </Key>
+    <Key ID="STR_AAA_PlayersEnabled_Desc">
+      <English>Whether the mod is enabled for players or not. If this is disabled, the mod will only apply to AI units.</English>
+      <Spanish>Si el mod está habilitado para jugadores o no. Si está desactivado, el mod sólo se aplicará a las unidades de la IA.</Spanish>
+      <German>Ob die Mod für Spieler aktiviert ist oder nicht. Wenn dies deaktiviert ist, wird die Mod nur auf KI-Einheiten angewendet.</German>
+      <Chinesesimp>该MOD是否对玩家启用。如果禁用，该模型将只适用于AI单位。</Chinesesimp>
+      <Japanese>このMODをプレイヤーに対して有効にするかどうか。無効の場合、MODはAIユニットにのみ適用されます。</Japanese>
+      <Italian>Se la mod è abilitata o meno per i giocatori. Se è disattivata, la mod si applicherà solo alle unità AI.</Italian>
+      <French>Si le mod est activé pour les joueurs ou non. Si cette option est désactivée, le mod ne s'appliquera qu'aux unités d'IA.</French>
+      <Polish>Czy mod jest włączony dla graczy czy nie. Jeśli jest to wyłączone, mod będzie dotyczył tylko jednostek AI.</Polish>
+      <Russian>Включен ли мод для игроков или нет. Если этот параметр отключен, мод будет применяться только к юнитам ИИ.</Russian>
+      <Portuguese>Quer o mod esteja ou não activado para jogadores. Se este estiver desactivado, o mod só se aplicará a unidades de IA.</Portuguese>
+      <Czech>Zda je mod pro hráče povolen, nebo ne. Pokud je tato volba vypnutá, mod se bude vztahovat pouze na jednotky AI.</Czech>
+    </Key>
+  </Package>
 </Project>
