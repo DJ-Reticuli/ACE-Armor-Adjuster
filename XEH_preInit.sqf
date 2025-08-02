@@ -180,6 +180,28 @@ private _modName = localize "STR_AAA_Name";
 ] call CBA_fnc_addSetting;
 
 [
+	"AAA_VAR_CALIBER_EXPONENT",
+	"SLIDER",
+	["$STR_AAA_CALIBER_EXPONENT", "$STR_AAA_CALIBER_EXPONENT_Desc"],
+	[_modName, "$STR_AAA_ArmorCoefs"],
+	[0, 5, 1, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"AAA_VAR_ARMOR_EXPONENT",
+	"SLIDER",
+	["$STR_AAA_ARMOR_EXPONENT", "$STR_AAA_ARMOR_EXPONENT_Desc"],
+	[_modName, "$STR_AAA_ArmorCoefs"],
+	[0, 5, 1, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
 	"AAA_VAR_BASE_ARMOR_VALUE",
 	"SLIDER",
 	["$STR_AAA_BASE_ARMOR_VALUE", "$STR_AAA_BASE_ARMOR_VALUE_Desc"],
