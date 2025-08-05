@@ -173,7 +173,7 @@ private _modName = localize "STR_AAA_Name";
 	"SLIDER",
 	["$STR_AAA_THRESHOLD_VALUE", "$STR_AAA_THRESHOLD_VALUE_Desc"],
 	[_modName, "$STR_AAA_ArmorCoefs"],
-	[0, 50, 0, 2, false],
+	[0, 50, 5, 2, false],
 	1,
 	{},
 	false
@@ -206,7 +206,7 @@ private _modName = localize "STR_AAA_Name";
 	"SLIDER",
 	["$STR_AAA_PlayerArmorCoef", "$STR_AAA_PlayerArmorCoef_Desc"],
 	[_modName, "$STR_AAA_ArmorCoefs"],
-	[1, 50, 15, 2, false],
+	[1, 50, 18, 2, false],
 	1,
 	{},
 	false
@@ -217,7 +217,7 @@ private _modName = localize "STR_AAA_Name";
 	"SLIDER",
 	["$STR_AAA_AIArmorCoef", "$STR_AAA_AIArmorCoef_Desc"],
 	[_modName, "$STR_AAA_ArmorCoefs"],
-	[1, 50, 15, 2, false],
+	[1, 50, 18, 2, false],
 	1,
 	{},
 	false
