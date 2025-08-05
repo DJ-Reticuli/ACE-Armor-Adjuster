@@ -47,87 +47,147 @@ _unit setVariable [
 			// Hitpoint damage to be added by this calculation
 			private _addedDamage = _damage - _prevDamage;
 
-			// If the hitpoint armor meets THRESHOLD, caluclate the new damage, otherwise do default handling
-			if (_hitpointArmor >= AAA_VAR_ARMOR_THRESHOLD_VALUE) then {
-				// Check if there's already an armor coefficient set for this unit, use that if there is
-				// Otherwise, get armor coefficient manually
-				private _unitCoef = _unit getVariable ["AAA_ArmorCoef", 0];
-				if (_unitCoef > 0) then {
-					_armorCoef = _unitCoef;
-				} else {
-					// Apply player and AI values
-					if (isPlayer _unit) then {
-						_armorCoef = AAA_VAR_PLAYER_ARMOR_COEF;
-					} else {
-						_armorCoef = AAA_VAR_AI_ARMOR_COEF;
-					};
-					// Optionally override values with side-based values
-					switch (side _unit) do {
-						case blufor: {
-							private _temp = AAA_VAR_BLUFOR_ARMOR_COEF;
-							if (_temp != 0) then {
-								_armorCoef = _temp;
-							};
-						};
-						case opfor: {
-							private _temp = AAA_VAR_OPFOR_ARMOR_COEF;
-							if (_temp != 0) then {
-								_armorCoef = _temp;
-							};
-						};
-						case civilian: {
-							private _temp = AAA_VAR_CIV_ARMOR_COEF;
-							if (_temp != 0) then {
-								_armorCoef = _temp;
-							};
-						};
-						case independent: {
-							private _temp = AAA_VAR_IND_ARMOR_COEF;
-							if (_temp != 0) then {
-								_armorCoef = _temp;
-							};
-						};
-					};
-				};
-				// Apply optional hitpoint multiplier
-				// Try to find unit-specific hitpoint multiplier
-				private _hitPointMult = _unit getVariable [format ["AAA_%1_MULT", _hitPoint], 0];
-				if (_hitPointMult == 0) then {
-					// If we can't find a unit-specific multiplier, try to find a general one
-					_hitPointMult = missionNameSpace getVariable [format ["AAA_VAR_%1_MULT", _hitPoint], 0];
-				};
-				// If we found a hitpoint multiplier, apply it to the armorCoef
-				if (_hitPointMult > 0) then {
-						_armorCoef = _armorCoef * _hitPointMult;
-				};
-				// Detect explosive damage and apply AAA_VAR_EXPLOSIVE_MULT if it is greater than 0 
-				if (AAA_VAR_EXPLOSIVE_MULT > 0 && {_projectile != "" && {getNumber (configFile >> "CfgAmmo" >> _projectile >> "indirectHit") > 0}}) then {
-					_armorCoef = _armorCoef * AAA_VAR_EXPLOSIVE_MULT;
-				};
-				// Multiply addedDamage by hitpoint's armor value divided by armor coefficient to correct ACE's armor
-				private _damageMultiplier = _hitpointArmor / _armorCoef;
-				_addedDamage = _addedDamage * _damageMultiplier;
-			} else {
-				// Do nothing
-			};
-			
-			if (AAA_VAR_DEBUG) then {
-				private _ogDamage = _damage - _prevDamage;
-				diag_log text "AAA DEBUG: NEW HIT PROCESSED! DETAILS BELOW:";
-				diag_log text format ["HIT UNIT: %1", _unit];
-				diag_log text format ["SHOOTER: %1", _source];
-				diag_log text format ["HITPOINT: %1", _hitPoint];
-				diag_log text format ["HITPOINT ARMOR: %1", _hitpointArmor];
-				diag_log text format ["ORIGINAL DAMAGE RECEIVED: %1", _ogDamage];
-				diag_log text format ["NEW DAMAGE RECEIVED: %1", _addedDamage];
-				if (_ogDamage != 0) then {
-					diag_log text format ["%1 DAMAGE CHANGE: %2%3", "%", ((_addedDamage - _ogDamage) * 100 / _ogDamage) toFixed 2, "%"];
-				} else {
-					diag_log text "% DAMAGE CHANGE: N/A";
-				};
-				diag_log text format ["TOTAL HITPOINT DAMAGE: %1", _prevDamage + _addedDamage];
-				diag_log text "";
-			};
+            // Define caliber for both damage calculation and debug
+            private _caliber = if (_projectile != "") then {
+                getNumber (configFile >> "CfgAmmo" >> _projectile >> "caliber")
+            } else {
+                -1
+            };
+            if (_caliber <= 0) then { _caliber = 1; };
+
+            // Debug: Log hitpointArmor and threshold to diagnose bypass
+            if (AAA_VAR_DEBUG) then {
+                diag_log format ["[AAA] _hitpointArmor: %1, AAA_VAR_ARMOR_THRESHOLD_VALUE: %2, Difference: %3", _hitpointArmor, AAA_VAR_ARMOR_THRESHOLD_VALUE, _hitpointArmor - AAA_VAR_ARMOR_THRESHOLD_VALUE];
+            };
+
+            // If the hitpoint armor meets THRESHOLD, calculate the new damage, otherwise do default handling
+            if (_hitpointArmor >= AAA_VAR_ARMOR_THRESHOLD_VALUE) then {
+                // Check if there's already an armor coefficient set for this unit
+                private _unitCoef = _unit getVariable ["AAA_ArmorCoef", -1];
+                if (_unitCoef >= 0) then {
+                    _armorCoef = _unitCoef;
+                } else {
+                    // Apply player and AI values
+                    if (isPlayer _unit) then {
+                        _armorCoef = AAA_VAR_PLAYER_ARMOR_COEF;
+                    } else {
+                        _armorCoef = AAA_VAR_AI_ARMOR_COEF;
+                    };
+                    // Optionally override values with side-based values
+                    switch (side _unit) do {
+                        case blufor: {
+                            private _temp = AAA_VAR_BLUFOR_ARMOR_COEF;
+                            if (_temp != 0) then {
+                                _armorCoef = _temp;
+                            };
+                        };
+                        case opfor: {
+                            private _temp = AAA_VAR_OPFOR_ARMOR_COEF;
+                            if (_temp != 0) then {
+                                _armorCoef = _temp;
+                            };
+                        };
+                        case civilian: {
+                            private _temp = AAA_VAR_CIV_ARMOR_COEF;
+                            if (_temp != 0) then {
+                                _armorCoef = _temp;
+                            };
+                        };
+                        case independent: {
+                            private _temp = AAA_VAR_IND_ARMOR_COEF;
+                            if (_temp != 0) then {
+                                _armorCoef = _temp;
+                            };
+                        };
+                    };
+                    // Cache the calculated armor coefficient
+                    _unit setVariable ["AAA_ArmorCoef", _armorCoef];
+                };
+
+                // Apply optional hitpoint multiplier
+                private _hitPointMult = _unit getVariable [format ["AAA_%1_MULT", _hitPoint], 0];
+                if (_hitPointMult == 0) then {
+                    _hitPointMult = missionNameSpace getVariable [format ["AAA_VAR_%1_MULT", _hitPoint], 0];
+                };
+                if (_hitPointMult > 0) then {
+                    _armorCoef = _armorCoef * _hitPointMult;
+                };
+
+                // Detect explosive damage and apply AAA_VAR_EXPLOSIVE_MULT if it is greater than 0 
+                if (AAA_VAR_EXPLOSIVE_MULT > 0 && {_projectile != "" && {getNumber (configFile >> "CfgAmmo" >> _projectile >> "indirectHit") > 0}}) then {
+                    _armorCoef = _armorCoef * AAA_VAR_EXPLOSIVE_MULT;
+                };
+
+                // Define the exponent for the exponential penetration
+                private _caliberExponent = 1.00; // Change this value to tweak the penetration (0 to whatever, default 1.00)
+                // Caliber Attenuation
+                private _caliberAttenuationFactor = _caliber ^ _caliberExponent;
+                _armorCoef = _armorCoef / (_caliberAttenuationFactor max 0.001);
+
+                // Calculate base damage multiplier
+                private _damageMultiplier = if (_armorCoef != 0) then { _hitpointArmor / _armorCoef } else { 1 };
+
+                // Define the exponent for the exponential armor buff (manually adjustable)
+                private _armorExponent = 3.0; // Change this value to tweak the buff strength (0 to whatever, default 1.00)
+                // Apply exponential adjustment to enhance the buff for higher armor values
+                if (_armorExponent > 0 && _hitpointArmor > 12.5) then {
+                    _damageMultiplier = _damageMultiplier / ((_hitpointArmor / 12.5) ^ _armorExponent);
+                };
+
+                // Cap damage multiplier to ensure reduction
+                _damageMultiplier = _damageMultiplier max 0.01 min 1; // Enforce damage reduction
+
+                // Apply the adjusted damage multiplier
+                _addedDamage = _addedDamage * _damageMultiplier;
+            };
+
+            if (AAA_VAR_DEBUG) then {
+                private _ogDamage = _damage - _prevDamage;
+                private _debugMessage = format [
+                    "AAA DEBUG: NEW HIT PROCESSED!\n" +
+                    "Hit Unit: %1\n" +
+                    "Shooter: %2\n" +
+                    "Hitpoint: %3\n" +
+                    "Hitpoint Armor: %4\n" +
+                    "Armor Threshold: %5\n" +
+                    "Caliber: %6\n" +
+                    "Original Damage: %7\n" +
+                    "New Damage: %8\n" +
+                    "% Damage Change: %9\n" +
+                    "Total Hitpoint Damage: %10",
+                    _unit,
+                    _source,
+                    _hitPoint,
+                    _hitpointArmor,
+                    AAA_VAR_ARMOR_THRESHOLD_VALUE,
+                    if (_caliber != -1) then { str _caliber } else { "N/A" },
+                    _ogDamage,
+                    _addedDamage,
+                    if (_ogDamage != 0) then {format ["%1%2", ((_addedDamage - _ogDamage) * 100 / _ogDamage) toFixed 2, "%"]} else {"N/A"},
+                    _prevDamage + _addedDamage
+                ];
+
+                // Output to RPT file
+                diag_log text "AAA DEBUG: NEW HIT PROCESSED! DETAILS BELOW:";
+                diag_log text format ["HIT UNIT: %1", _unit];
+                diag_log text format ["SHOOTER: %1", _source];
+                diag_log text format ["HITPOINT: %1", _hitPoint];
+                diag_log text format ["HITPOINT ARMOR: %1", _hitpointArmor];
+                diag_log text format ["ARMOR THRESHOLD: %1", AAA_VAR_ARMOR_THRESHOLD_VALUE];
+                diag_log text format ["CALIBER: %1", if (_caliber != -1) then { str _caliber } else { "N/A" }];
+                diag_log text format ["ORIGINAL DAMAGE RECEIVED: %1", _ogDamage];
+                diag_log text format ["NEW DAMAGE RECEIVED: %1", _addedDamage];
+                if (_ogDamage != 0) then {
+                    diag_log text format ["%1 DAMAGE CHANGE: %2%3", "%", ((_addedDamage - _ogDamage) * 100 / _ogDamage) toFixed 2, "%"];
+                } else {
+                    diag_log text "% DAMAGE CHANGE: N/A";
+                };
+                diag_log text format ["TOTAL HITPOINT DAMAGE: %1", _prevDamage + _addedDamage];
+                diag_log text "";
+
+                // Output to screen (right side)
+                hintSilent _debugMessage;
+            };
 			
 			// Replace original damage value with new damage value
 			_this set [2, _prevDamage + _addedDamage];
