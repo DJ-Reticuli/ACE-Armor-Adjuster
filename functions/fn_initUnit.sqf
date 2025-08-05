@@ -119,7 +119,7 @@ _unit setVariable [
                     _armorCoef = _armorCoef * AAA_VAR_EXPLOSIVE_MULT;
                 };
 
-                // Define the exponent for the exponential penetration
+                 // Define the exponent for the exponential penetration
                 private _caliberExponent = 1.00; // Change this value to tweak the penetration (0 to whatever, default 1.00)
                 // Caliber Attenuation
                 private _caliberAttenuationFactor = _caliber ^ _caliberExponent;
@@ -129,14 +129,11 @@ _unit setVariable [
                 private _damageMultiplier = if (_armorCoef != 0) then { _hitpointArmor / _armorCoef } else { 1 };
 
                 // Define the exponent for the exponential armor buff (manually adjustable)
-                private _armorExponent = 3.0; // Change this value to tweak the buff strength (0 to whatever, default 1.00)
+                private _armorExponent = 1.00; // Change this value to tweak the buff strength (0 to whatever, default 1.00)
                 // Apply exponential adjustment to enhance the buff for higher armor values
-                if (_armorExponent > 0 && _hitpointArmor > 12.5) then {
-                    _damageMultiplier = _damageMultiplier / ((_hitpointArmor / 12.5) ^ _armorExponent);
+                if (_armorExponent > 0 && (_hitpointArmor - AAA_VAR_ARMOR_THRESHOLD_VALUE) > 0) then {
+                    _damageMultiplier = _damageMultiplier / ((_hitpointArmor / AAA_VAR_ARMOR_THRESHOLD_VALUE) ^ _armorExponent);
                 };
-
-                // Cap damage multiplier to ensure reduction
-                _damageMultiplier = _damageMultiplier max 0.01 min 1; // Enforce damage reduction
 
                 // Apply the adjusted damage multiplier
                 _addedDamage = _addedDamage * _damageMultiplier;
