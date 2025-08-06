@@ -95,9 +95,6 @@ _unit setVariable [
                             };
                         };
                     };
-                    // Cache the calculated armor coefficient
-                    _unit setVariable ["AAA_ArmorCoef", _armorCoef];
-                };
 
                 // Apply optional hitpoint multiplier
                 private _hitPointMult = _unit getVariable [format ["AAA_%1_MULT", _hitPoint], 0];
