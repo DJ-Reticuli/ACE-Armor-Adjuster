@@ -62,11 +62,6 @@ _unit setVariable [
 
             // If the hitpoint armor meets THRESHOLD, calculate the new damage, otherwise do default handling
             if (_hitpointArmor >= AAA_VAR_ARMOR_THRESHOLD_VALUE) then {
-                // Check if there's already an armor coefficient set for this unit
-                private _unitCoef = _unit getVariable ["AAA_ArmorCoef", -1];
-                if (_unitCoef >= 0) then {
-                    _armorCoef = _unitCoef;
-                } else {
                     // Apply player and AI values
                     if (isPlayer _unit) then {
                         _armorCoef = AAA_VAR_PLAYER_ARMOR_COEF;
