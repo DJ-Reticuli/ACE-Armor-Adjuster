@@ -42,7 +42,7 @@ _unit setVariable [
 			if (AAA_VAR_FORCE_BASE_ARMOR) then {
 				_hitpointArmor = AAA_VAR_BASE_ARMOR_VALUE;
 			} else {
-				_hitpointArmor = AAA_VAR_BASE_ARMOR_VALUE + ([_unit, _hitPoint] call ace_medical_engine_fnc_getHitpointArmor);
+				_hitpointArmor = AAA_VAR_BASE_ARMOR_VALUE + (([_unit, _hitPoint] call ace_medical_engine_fnc_getHitpointArmor) param [0]);
 			};
 			// Hitpoint damage to be added by this calculation
 			private _addedDamage = _damage - _prevDamage;
