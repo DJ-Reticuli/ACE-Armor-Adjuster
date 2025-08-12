@@ -110,8 +110,25 @@ _unit setVariable [
                     _armorCoef = _armorCoef * AAA_VAR_EXPLOSIVE_MULT;
                 };
 
-				// Caliber Attenuation
-                private _caliberAttenuationFactor = _caliber ^ AAA_VAR_CALIBER_EXPONENT;
+                // Caliber Attenuation where vanilla caliber goes from 0.1 to 3.6 in Arma 3
+                private _caliberAttenuationFactor = 1; // Default value
+
+                if (isNil "AAA_VAR_CALIBER_EXPONENT") then {
+                    diag_log "[AAA] ERROR: AAA_VAR_CALIBER_EXPONENT is undefined, using default value 1";
+                    AAA_VAR_CALIBER_EXPONENT = 1; // Fallback value
+                };
+
+                if (AAA_VAR_CALIBER_EXPONENT != 0 && _caliber > 1) then {
+                    // For calibers > 1, apply the exponential inflation.
+                    _caliberAttenuationFactor = _caliber ^ (_caliber / AAA_VAR_CALIBER_EXPONENT);
+                } else {
+                    if (AAA_VAR_CALIBER_EXPONENT != 0 && _caliber <= 1) then {
+                        // For calibers <= 1, the value remains unchanged.
+                        _caliberAttenuationFactor = _caliber;
+                    };
+                };
+
+                // Apply the attenuation factor, ensuring it's not zero to avoid division errors.
                 _armorCoef = _armorCoef / (_caliberAttenuationFactor max 0.001);
 
                 // Calculate base damage multiplier
