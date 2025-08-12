@@ -184,7 +184,7 @@ private _modName = localize "STR_AAA_Name";
 	"SLIDER",
 	["$STR_AAA_CALIBER_EXPONENT", "$STR_AAA_CALIBER_EXPONENT_Desc"],
 	[_modName, "$STR_AAA_ArmorCoefs"],
-	[0, 5, 1, 2, false],
+	[0, 50, 1.85, 2, false],
 	1,
 	{},
 	false
@@ -195,7 +195,7 @@ private _modName = localize "STR_AAA_Name";
 	"SLIDER",
 	["$STR_AAA_ARMOR_EXPONENT", "$STR_AAA_ARMOR_EXPONENT_Desc"],
 	[_modName, "$STR_AAA_ArmorCoefs"],
-	[0, 5, 3, 2, false],
+	[0, 5, 2.85, 2, false],
 	1,
 	{},
 	false
