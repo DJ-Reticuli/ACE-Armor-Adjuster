@@ -847,17 +847,17 @@
       <Czech>Exponent kalibru</Czech>
     </Key>
     <Key ID="STR_AAA_CALIBER_EXPONENT_Desc">
-      <English>Controls exponential scaling of penetration values. A higher value corresponds to more severe damage from higher caliber.</English>
-      <Spanish>Controla la escala exponencial de los valores de penetración. Un valor más alto corresponde a un daño más grave por un calibre más alto.</Spanish>
-      <German>Steuert die exponentielle Skalierung der Penetrationswerte. Ein höherer Wert entspricht einem größeren Schaden durch ein höheres Kaliber.</German>
-      <Chinesesimp>控制穿透值的指数缩放。数值越大，表示更高的口径造成的破坏越严重。</Chinesesimp>
-      <Japanese>貫通力の指数スケーリングを制御する。値が大きいほど大口径によるダメージが大きい。</Japanese>
-      <Italian>Controlla la scala esponenziale dei valori di penetrazione. Un valore più alto corrisponde a danni più gravi causati da un calibro maggiore.</Italian>
-      <French>Contrôle l'échelle exponentielle des valeurs de pénétration. Une valeur plus élevée correspond à des dommages plus graves causés par un calibre plus élevé.</French>
-      <Polish>Kontroluje wykładnicze skalowanie wartości penetracji. Wyższa wartość odpowiada poważniejszym obrażeniom od większego kalibru.</Polish>
-      <Russian>Управляет экспоненциальным масштабированием значений пробития. Более высокое значение соответствует более серьезным повреждениям от более высокого калибра.</Russian>
-      <Portuguese>Controla o escalonamento exponencial dos valores de penetração. Um valor mais elevado corresponde a danos mais graves provocados por um calibre superior.</Portuguese>
-      <Czech>Řídí exponenciální škálování hodnot průniku. Vyšší hodnota odpovídá závažnějšímu poškození způsobenému větší ráží.</Czech>
+      <English>Controls exponential scaling of penetration values. Higher produces less penetration. Zero disables.</English>
+      <Spanish>Controla el escalado exponencial de los valores de penetración. Un valor más alto produce menos penetración. Cero lo desactiva.</Spanish>
+      <German>Steuert die exponentielle Skalierung der Durchschlagswerte. Höhere Werte führen zu weniger Durchschlagskraft. Null deaktiviert die Funktion.</German>
+      <Chinesesimp>控制穿透值的指数缩放。数值越高，穿透力越小。零则禁用。</Chinesesimp>
+      <Japanese>貫通値の指数関数的スケーリングを制御します。値が高いほど貫通力は低下します。ゼロで無効になります。</Japanese>
+      <Italian>Controlla la scala esponenziale dei valori di penetrazione. Un valore più alto produce una minore penetrazione. Zero lo disabilita.</Italian>
+      <French>Contrôle l'échelle exponentielle des valeurs de pénétration. Une valeur plus élevée produit moins de pénétration. Zéro désactive.</French>
+      <Polish>Kontroluje wykładnicze skalowanie wartości penetracji. Wyższa wartość powoduje mniejszą penetrację. Zero wyłącza.</Polish>
+      <Russian>Управляет экспоненциальным масштабированием значений пробития. Чем выше значение, тем меньше пробитие. Ноль отключает.</Russian>
+      <Portuguese>Controla a escala exponencial dos valores de penetração. Um valor mais alto resulta em menos penetração. Zero desativa.</Portuguese>
+      <Czech>Řídí exponenciální škálování hodnot průbojnosti. Vyšší hodnota produkuje menší průbojnost. Nula vypne.</Czech>
     </Key>
     <Key ID="STR_AAA_ARMOR_EXPONENT">
       <English>Armor Exponent</English>
